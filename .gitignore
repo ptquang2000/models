@@ -1,0 +1,14 @@
+# External reference material: large, copyrighted, not part of the project source.
+# Listed and described in RESOURCES.md; keep the local copies out of the repo.
+/resources/
+/docs/
+*.pdf
+
+# Rust build output
+/target/
+**/*.rs.bk
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
