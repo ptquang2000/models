@@ -20,4 +20,6 @@ often wrong by week six.
 
 ## Terms
 
-_No terms promoted yet._
+**Linear combination**:
+A sum of scalar multiples of vectors, `c u + d v`. For two vectors, the set of all of them is a line when one is a multiple of the other and a plane otherwise; adding the restriction `c, d ≥ 0` shrinks it to a wedge or a ray.
+_Avoid_: "linear compilation", "mix", "sum of vectors" (that is only the `c = d = 1` case)
