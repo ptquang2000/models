@@ -28,14 +28,14 @@ _Set 2026-11-23._
 - Track: A. Least squares
 - Model: Phase 0 lab harness (Rust, hand-rolled `Mat`)
 - Reading: ISL §2.2, *Assessing Model Accuracy* (stop at the R lab)
-- Next action: `Mat` (rows, cols, flat data, indexed access) plus a seeded split, then the split's acceptance test
-- Last session: 2026-11-23 (math, §1.3)
+- Next action: answer the ISL §2.2 gate question closed-book, then write the split's acceptance test before the split code
+- Last session: 2026-11-23 (harness: `Mat` + layout check)
 
 ## Models
 
 | # | Model | Status | Code | Check that proves it | Explain-back | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 | Lab harness (split, scaler, metrics, gradcheck) | todo | — | — | — | — |
+| 0 | Lab harness (split, scaler, metrics, gradcheck) | todo | `linux_models.rs` | — | — | `Mat` (arena, row-major) + `test_mat` done 2026-11-23; split, scaler, metrics, gradcheck pending |
 | 1 | Linear regression, closed form | todo | — | — | — | — |
 | 2 | Linear regression, gradient descent | todo | — | — | — | — |
 | 3 | Random forest regressor | todo | — | — | — | — |
@@ -171,6 +171,7 @@ forward progress; if an item is weak, drill it, then continue the phase.
 | What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-23 | 2026-11-26 | pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
 | `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-21 | 2026-11-24 | shaky — needed 3 attempts |
 | Row `i` of `A` dotted with `x`: what does it return, and why does the column picture give the same `b`? | 2026-11-23 | 2026-11-26 | partial — dot products computed correctly, no reason given for the agreement |
+| Why estimate performance on data the model hasn't seen? | 2026-11-23 | 2026-11-24 | asked at the split gate, no answer yet |
 
 ## Session log
 
@@ -178,6 +179,7 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
+| 2026-11-23 | harness | Phase 0: `Mat` + layout check | `Mat` over the arena with `test_mat` pinning `set`/`get` and the row-major stride; the first draft's out-of-bounds `copy_nonoverlapping` was removed after review; a transposed stride fails the check | Answer the ISL §2.2 question, then write the split acceptance test |
 | 2026-11-23 | math | §1.3 problems 1, 4, 6 | p1 stalled on row-vs-column assembly until a 2×2 micro-example; p4 and p6 correct after component-level probing, not before | Phase 0 harness: choose array library, then split + scaler |
 | 2026-11-20 | math | §1.1 problems 1, 19, 25 | all correct after 3 rounds of prompts; recurring error: dropping one condition from the question | §1.2 problems 1, 2, 3, 8, 12 |
 | 2026-11-17 | setup | Mission, stack, baseline | Stack: Rust; math from zero; coding strong | §1.1 problems 1, 19, 25 |

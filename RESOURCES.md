@@ -18,6 +18,10 @@ what it is for.
   Strang.pdf`
   Answers to the problem sets. Use only to check a real attempt; reading first does not
   count as practice.
+- `docs/ISLR_First_Printing.pdf`
+  James et al., *An Introduction to Statistical Learning*, 2nd ed., first printing.
+  The reading track in `CURRICULUM.md`. §2.2 verified: printed pp. 29–41 = PDF
+  pp. 42–54; §2.3 R lab starts PDF p. 55.
 
 ## Knowledge
 

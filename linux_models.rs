@@ -1,3 +1,5 @@
+#![cfg_attr(not(test), no_main)]
+
 macro_rules! kilobytes {
     ($value:expr) => {
         $value * 1024
@@ -21,7 +23,7 @@ macro_rules! terabytes {
 
 type MemoryIndex = usize;
 
-pub struct MemoryArena {
+struct MemoryArena {
     size: MemoryIndex,
     base: *mut u8,
     used: MemoryIndex,
@@ -47,7 +49,7 @@ macro_rules! push_array {
         .cast::<$type>()
     };
 }
-pub fn push_size_(arena: &mut MemoryArena, size: MemoryIndex, align: MemoryIndex) -> *mut u8 {
+fn push_size_(arena: &mut MemoryArena, size: MemoryIndex, align: MemoryIndex) -> *mut u8 {
     arena.used = (arena.used + align - 1) & !(align - 1);
     debug_assert!(arena.used + size <= arena.size);
 
@@ -109,23 +111,15 @@ impl Mat {
     }
 }
 
-fn main() {
-    let permanent_storage_size = megabytes!(1);
-    let transient_storage_size = kilobytes!(64);
-    let permanent_storage_memory = unsafe {
-        mmap(
-            core::ptr::null_mut(),
-            transient_storage_size + permanent_storage_size,
-            PROT_READ | PROT_WRITE,
-            MAP_PRIVATE | MAP_ANONYMOUS | MAP_POPULATE,
-            -1,
-            0,
-        )
-    };
-    let transient_storage_memory = permanent_storage_memory.wrapping_add(permanent_storage_size);
-    let memory_arena = MemoryArena {
-        base: permanent_storage_memory as _,
-        size: permanent_storage_size,
-        used: 0,
-    };
+#[cfg(not(test))]
+#[no_mangle]
+pub extern "C" fn main(
+    argc: core::ffi::c_int,
+    argv: *const *const core::ffi::c_char,
+) -> core::ffi::c_int {
+    0
 }
+
+#[cfg(test)]
+#[path = "test_models.rs"]
+mod test_models;
