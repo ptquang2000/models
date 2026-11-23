@@ -8,6 +8,9 @@ Gilbert Strang.pdf`
 Every section and problem number below was checked against those PDFs. If a number here
 disagrees with the book, the book wins — fix this file.
 
+This file is linear algebra and probability only. The "why the model works" reading is in
+`CURRICULUM.md` under **Reading track**.
+
 ## Rules of engagement
 
 1. **Tiers are decisions, not suggestions.** MUST = read and solve. SKIM = read the

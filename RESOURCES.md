@@ -48,6 +48,9 @@ what it is for.
 - [scikit-learn user guide](https://scikit-learn.org/stable/)
   Not a tutorial. Use for: API expectations, metric definitions, and as the oracle in
   tests. Never copy an implementation from it into model code.
+- [Jurafsky & Martin — Speech and Language Processing, 3rd ed. draft](https://web.stanford.edu/~jurafsky/slp3/)
+  Use for: vector semantics — tf-idf, cosine similarity, sparsity. Chapter 6 only, before
+  the text build.
 
 ### Probability, calculus, optimization
 

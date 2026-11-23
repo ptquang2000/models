@@ -5,6 +5,7 @@
 *.pdf
 
 # Rust build output
+/build/
 /target/
 **/*.rs.bk
 

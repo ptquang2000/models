@@ -17,6 +17,44 @@ what to build and what must be true when it is done.
 | Group unlabeled data | k-means | Hierarchical clustering / DBSCAN |
 | Text classification | Naive Bayes | Logistic regression with TF-IDF |
 
+## Reading track
+
+Every build has one primary reading, pinned to a section, read before the code and only to
+the depth the build needs. This is the same discipline as `MATH-MAP.md`: a fixed subset is
+the unit of work, and finishing a chapter is not a goal. Derivations stay in `MATH-MAP.md`;
+this table is the "why it works" reading.
+
+| # | Build | Read before coding | Stop at | What it answers |
+| --- | --- | --- | --- | --- |
+| 0 | Lab harness | ISL §2.2, *Assessing Model Accuracy* | the R lab | why held-out error, not training error, estimates performance |
+| 1 | Linear regression, closed form | ISL §3.1–3.2 | §3.3 | what least squares estimates, and what R² does and does not say |
+| 2 | Linear regression, gradient descent | Boyd & Vandenberghe ch. 5, the gradient-descent part | Newton's method | step size, convergence, why scaling changes the path |
+| 3 | Random forest regressor | ISL §8.1–8.2 | the ch. 8 lab | greedy splitting, bagging, why averaging cuts variance |
+| 4 | XGBoost regressor | Chen & Guestrin (2016), introduction and regularized objective | the system-design section | the gain formula, and why the objective is second-order |
+| 5 | Logistic regression | ISL §4.1–4.3 | §4.4 | log-odds, sigmoid, why log-loss and not squared error |
+| 6 | Random forest classifier | ISL §8.1, the classification parts | §8.2 | Gini vs. entropy, probability leaves |
+| 7 | XGBoost classifier | Chen & Guestrin (2016), the logistic objective | the system-design section | base score from the prior, calibrated probabilities |
+| 8 | k-means | ISL §12.4.1 | §12.4.2 | the within-cluster objective, and why Lloyd cannot increase it |
+| 9 | Hierarchical clustering | ISL §12.4.2 | §12.4.3 | linkage choice, reading a dendrogram |
+| 10 | DBSCAN | Ester et al. (1996), the definitions | the experiments | core, border, noise, density reachability |
+| 11 | Naive Bayes | ISL §4.4, the naive Bayes part | §4.5 | the independence assumption, and why it still works |
+| 12 | TF-IDF + logistic regression | Jurafsky & Martin, *SLP3* ch. 6 | the embeddings part | tf-idf weighting, cosine, sparsity |
+| 13 | Capstone | ISL ch. 5, *Resampling Methods* | the lab | validation vs. cross-validation, reading a learning curve |
+
+Rules:
+
+1. **One primary source per build.** The rest of the list stays shut until that build is
+   done.
+2. **Section-level and capped.** The "stop at" column is part of the assignment, not a
+   suggestion.
+3. **Verify the section when the build starts.** Chapter numbers here are safe; section
+   numbers get checked against the PDF, and the source wins if they disagree.
+4. **No build starts until three things are true:** the reading is done, every term in the
+   build assignment has been defined in words (in the session or in `GLOSSARY.md`), and
+   the acceptance test is written down before the code.
+5. **Reading is not progress.** A build moves to `verified` on tests, never on pages read.
+   A term enters `GLOSSARY.md` only after it is used correctly.
+
 ## Phase 0 — Lab harness
 
 Not a model, but nothing else is measurable without it.

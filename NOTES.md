@@ -29,6 +29,11 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log â€
 | 2026-11-17 | No deadline; progress is gate-driven | The learner works until each model and checkpoint is done, not until a date |
 | 2026-11-17 | Stack: Rust, built and tested with cargo | The learner's choice; array library and support crates still to be decided |
 | 2026-11-17 | A reference implementation is allowed as a test oracle only | Keeps verification cheap without creating library dependence |
+| 2026-11-23 | Array representation: hand-rolled `Mat` (flat `Vec<f64>`, row-major) | Learner's call â€” wants to own the storage and indexing |
+| 2026-11-23 | Build with `build.sh` + `rustc` directly; no cargo | Learner's decision (supersedes "built and tested with cargo"); tests must be compiled separately with `rustc --test` |
+| 2026-11-23 | Metric oracle: hand-computed fixtures, no reference crate | Consequence of dropping cargo; keeps the oracle visible in the test |
+| 2026-11-23 | Input checks use `debug_assert!` | Learner's decision; active at `-C opt-level=0`, compiled out above it |
+| 2026-11-23 | Each build has a pinned, section-level primary reading; a build does not start until that reading is done and its terms are defined | Learner asked to study each concept before coding it; the reading track lives in `CURRICULUM.md` |
 
 ## Baseline
 
@@ -40,7 +45,7 @@ _Recorded 2026-11-17, first session._
 
 ## Open questions
 
-- [ ] Array library: `ndarray`, `nalgebra`, or hand-rolled? (Learner's call.)
+- [x] Array library: hand-rolled `Mat` over a flat `Vec<f64>` (decided 2026-11-23)
 - [ ] Dataset source in Rust: checked-in CSV, generated synthetic data, or a crate?
 - [ ] Dataset interests for the capstone: tabular, text, or something else?
 - [ ] Does the user want the repo to be a git repo with commits per model?

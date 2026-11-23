@@ -23,3 +23,14 @@ often wrong by week six.
 **Linear combination**:
 A sum of scalar multiples of vectors, `c u + d v`. For two vectors, the set of all of them is a line when one is a multiple of the other and a plane otherwise; adding the restriction `c, d ≥ 0` shrinks it to a wedge or a ray.
 _Avoid_: "linear compilation", "mix", "sum of vectors" (that is only the `c = d = 1` case)
+
+**Column picture**:
+Reading `Ax = b` as a combination `b = x₁a₁ + ⋯ + xₙaₙ` of the columns of `A`. The
+alternative reading, `(row i)·x = bᵢ`, is the row picture; both produce the same `b`.
+_Avoid_: "column view", "column form"
+
+**Dependent columns**:
+Columns are dependent when some nonzero combination of them is zero, so at least one of
+them lies in the span of the others and the matrix is not invertible. Independent means the
+only zero combination is the all-zero one.
+_Avoid_: "dependent matrix", "linearly related"

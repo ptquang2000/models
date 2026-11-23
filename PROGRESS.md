@@ -23,12 +23,13 @@ A model is **done** only at `verified` + `explained`. Coverage is not progress.
 
 ## Current focus
 
-_Set 2026-11-20._
+_Set 2026-11-23._
 
 - Track: A. Least squares
-- Model: Phase 0 lab harness (Rust), after the first math section
-- Next action: read §1.3, then problems 1, 4, 6
-- Last session: 2026-11-21 (math, §1.2)
+- Model: Phase 0 lab harness (Rust, hand-rolled `Mat`)
+- Reading: ISL §2.2, *Assessing Model Accuracy* (stop at the R lab)
+- Next action: `Mat` (rows, cols, flat data, indexed access) plus a seeded split, then the split's acceptance test
+- Last session: 2026-11-23 (math, §1.3)
 
 ## Models
 
@@ -59,7 +60,7 @@ Sections not listed are SKIP. Assignments and problem numbers are in `MATH-MAP.m
 | --- | --- | --- | --- | --- |
 | 1.1 | Vectors and linear combinations | verified | 2026-11-20 | 1, 19, 25 correct after prompting. Weakness: drops conditions from the question. Explain-back pending |
 | 1.2 | Lengths and dot products | verified | 2026-11-21 | 1, 2, 3, 8, 12 correct. Weak spots: producing a vector at a given angle took 3 attempts; counterexample was checked against the hypothesis but not the conclusion. Explain-back pending |
-| 1.3 | Matrices and `Ax = b` | todo | — | — |
+| 1.3 | Matrices and `Ax = b` | verified | 2026-11-23 | 1, 4, 6 done. Failure caught: assembled `S` with the given vectors as rows, i.e. computed `Sᵀx`, and asserted the result matched `b`. p4 combination `(1,−2,1)`, plane `b₁−2b₂+b₃=0`, `(1,0,0)` unreachable. p6: `c=3`, `c=−1`, independent for `c≠0` by components, `c=0` → `x=(−3,1,1)`. Explain-back pending |
 | 2.1 | Row and column pictures | todo | — | — |
 | 2.2 | Elimination and pivots | todo | — | — |
 | 2.5 | Inverse matrices | todo | — | — |
@@ -167,8 +168,9 @@ forward progress; if an item is weak, drill it, then continue the phase.
 
 | Item | Last asked | Suggested next | Result |
 | --- | --- | --- | --- |
-| What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-20 | 2026-11-23 | pass, after 4 rounds of prompts |
+| What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-23 | 2026-11-26 | pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
 | `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-21 | 2026-11-24 | shaky — needed 3 attempts |
+| Row `i` of `A` dotted with `x`: what does it return, and why does the column picture give the same `b`? | 2026-11-23 | 2026-11-26 | partial — dot products computed correctly, no reason given for the agreement |
 
 ## Session log
 
@@ -176,6 +178,6 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
-| 2026-11-21 | math | §1.2 problems 1, 2, 3, 8, 12 | all correct, but `p3c` took 3 attempts and `p8a` 3 attempts; both failures were unverified conditions | §1.3 problems 1, 4, 6 |
+| 2026-11-23 | math | §1.3 problems 1, 4, 6 | p1 stalled on row-vs-column assembly until a 2×2 micro-example; p4 and p6 correct after component-level probing, not before | Phase 0 harness: choose array library, then split + scaler |
 | 2026-11-20 | math | §1.1 problems 1, 19, 25 | all correct after 3 rounds of prompts; recurring error: dropping one condition from the question | §1.2 problems 1, 2, 3, 8, 12 |
 | 2026-11-17 | setup | Mission, stack, baseline | Stack: Rust; math from zero; coding strong | §1.1 problems 1, 19, 25 |
