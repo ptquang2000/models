@@ -1,0 +1,19 @@
+vim.keymap.set("n", "<F5>", function()
+  if vim.fn.has("win32") == 1 then
+    vim.opt_local.makeprg = "pwsh -NoProfile -ExecutionPolicy Bypass -File build.ps1"
+  elseif vim.fn.has("linux") == 1 then
+    vim.opt_local.makeprg = "sh build.sh"
+  elseif vim.fn.has("osx") == 1 then
+    vim.opt_local.makeprg = "sh build.command"
+  end
+
+  local start = vim.uv.now()
+  vim.cmd("silent make!")
+
+  local elapsed = (vim.uv.now() - start) / 1000
+  local qf = vim.fn.getqflist()
+  table.insert(qf, { text = string.format("Build completed in %.3fs", elapsed), lnum = 0, col = 0 })
+  vim.fn.setqflist(qf, "r")
+
+  vim.cmd("copen")
+end, { desc = "Build models" })

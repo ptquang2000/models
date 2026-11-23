@@ -1,0 +1,12 @@
+[package]
+name = "models"
+version = "0.1.0"
+edition = "2015"
+build = "build.rs"
+
+[[bin]]
+name = "linux_models"
+path = "linux_models.rs"
+
+[lints.rust]
+unused = "allow"
