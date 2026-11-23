@@ -2,20 +2,10 @@ use *;
 
 #[test]
 fn test_mat() {
-    let permanent_storage_size = megabytes!(1);
-    let permanent_storage_memory = unsafe {
-        mmap(
-            core::ptr::null_mut(),
-            permanent_storage_size,
-            PROT_READ | PROT_WRITE,
-            MAP_PRIVATE | MAP_ANONYMOUS | MAP_POPULATE,
-            -1,
-            0,
-        )
-    };
+    let mut buffer = [0.; 256];
     let mut arena = MemoryArena {
-        base: permanent_storage_memory as _,
-        size: permanent_storage_size,
+        base: buffer.as_ptr() as _,
+        size: buffer.len() * core::mem::size_of_val(&buffer[0]),
         used: 0,
     };
 

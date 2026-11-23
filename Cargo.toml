@@ -8,5 +8,9 @@ build = "build.rs"
 name = "linux_models"
 path = "linux_models.rs"
 
+[[bin]]
+name = "osx_models"
+path = "osx_models.rs"
+
 [lints.rust]
 unused = "allow"
