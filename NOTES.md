@@ -30,7 +30,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log â€
 | 2026-11-17 | Stack: Rust, built and tested with cargo | The learner's choice; array library and support crates still to be decided |
 | 2026-11-17 | A reference implementation is allowed as a test oracle only | Keeps verification cheap without creating library dependence |
 | 2026-11-23 | Array representation: hand-rolled `Mat` (flat `Vec<f64>`, row-major) | Learner's call â€” wants to own the storage and indexing |
-| 2026-11-23 | Build with `build.sh` + `rustc` directly; no cargo | Learner's decision (supersedes "built and tested with cargo"); tests must be compiled separately with `rustc --test` |
+| 2026-11-23 | Build of record is `build.sh` + `rustc`; `Cargo.toml` + `build.rs` exist only to feed rust-analyzer | Learner's decision; supersedes "built and tested with cargo". Consequence: tests are compiled by `build.sh` with `rustc --test`, not by `cargo test` |
 | 2026-11-23 | Metric oracle: hand-computed fixtures, no reference crate | Consequence of dropping cargo; keeps the oracle visible in the test |
 | 2026-11-23 | Input checks use `debug_assert!` | Learner's decision; active at `-C opt-level=0`, compiled out above it |
 | 2026-11-23 | Each build has a pinned, section-level primary reading; a build does not start until that reading is done and its terms are defined | Learner asked to study each concept before coding it; the reading track lives in `CURRICULUM.md` |
