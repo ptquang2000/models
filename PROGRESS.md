@@ -27,8 +27,8 @@ _Set 2026-11-20._
 
 - Track: A. Least squares
 - Model: Phase 0 lab harness (Rust), after the first math section
-- Next action: read §1.2, then problems 1, 2, 3, 8, 12
-- Last session: 2026-11-20 (math, §1.1)
+- Next action: read §1.3, then problems 1, 4, 6
+- Last session: 2026-11-21 (math, §1.2)
 
 ## Models
 
@@ -58,7 +58,7 @@ Sections not listed are SKIP. Assignments and problem numbers are in `MATH-MAP.m
 | § | Topic | Status | Date | Notes |
 | --- | --- | --- | --- | --- |
 | 1.1 | Vectors and linear combinations | verified | 2026-11-20 | 1, 19, 25 correct after prompting. Weakness: drops conditions from the question. Explain-back pending |
-| 1.2 | Lengths and dot products | todo | — | — |
+| 1.2 | Lengths and dot products | verified | 2026-11-21 | 1, 2, 3, 8, 12 correct. Weak spots: producing a vector at a given angle took 3 attempts; counterexample was checked against the hypothesis but not the conclusion. Explain-back pending |
 | 1.3 | Matrices and `Ax = b` | todo | — | — |
 | 2.1 | Row and column pictures | todo | — | — |
 | 2.2 | Elimination and pivots | todo | — | — |
@@ -168,6 +168,7 @@ forward progress; if an item is weak, drill it, then continue the phase.
 | Item | Last asked | Suggested next | Result |
 | --- | --- | --- | --- |
 | What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-20 | 2026-11-23 | pass, after 4 rounds of prompts |
+| `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-21 | 2026-11-24 | shaky — needed 3 attempts |
 
 ## Session log
 
@@ -175,5 +176,6 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
+| 2026-11-21 | math | §1.2 problems 1, 2, 3, 8, 12 | all correct, but `p3c` took 3 attempts and `p8a` 3 attempts; both failures were unverified conditions | §1.3 problems 1, 4, 6 |
 | 2026-11-20 | math | §1.1 problems 1, 19, 25 | all correct after 3 rounds of prompts; recurring error: dropping one condition from the question | §1.2 problems 1, 2, 3, 8, 12 |
 | 2026-11-17 | setup | Mission, stack, baseline | Stack: Rust; math from zero; coding strong | §1.1 problems 1, 19, 25 |
