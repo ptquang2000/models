@@ -19,9 +19,15 @@ what it is for.
   Answers to the problem sets. Use only to check a real attempt; reading first does not
   count as practice.
 - `docs/ISLR_First_Printing.pdf`
-  James et al., *An Introduction to Statistical Learning*, 2nd ed., first printing.
+  James et al., *An Introduction to Statistical Learning*, 2nd ed., first printing (R).
   The reading track in `CURRICULUM.md`. §2.2 verified: printed pp. 29–41 = PDF
   pp. 42–54; §2.3 R lab starts PDF p. 55.
+- `docs/james2023islp.pdf`
+  James et al., *An Introduction to Statistical Learning with Applications in Python*
+  (ISLP, 2023). Same text as the R printing, different pagination. The learner reads from
+  this one. §2.2 verified: printed pp. 27–39 = PDF pp. 37–49 (offset +10); 2.2.1 p. 28,
+  2.2.2 p. 31, 2.2.3 p. 34; §2.3 Python lab starts printed p. 40. Subtract 2 from any
+  printed page number in `CURRICULUM.md` / `MATH-MAP.md` when reading this edition.
 
 ## Knowledge
 

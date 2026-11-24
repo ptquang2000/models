@@ -36,13 +36,16 @@ This file is linear algebra and probability only. The "why the model works" read
 | Track | Start it when | Sections | Done when |
 | --- | --- | --- | --- |
 | A. Least squares | Before linear regression | 1.1–1.3, 2.1–2.2, 2.5–2.6, 3.1–3.5, 4.1–4.3 | checkpoints A1–A4 answered |
-| B. Likelihood | Before logistic regression | 12.1–12.2 + calculus refresher | checkpoints B1–B2 answered |
-| C. Eigen and SVD | Before k-means + PCA | 6.1–6.2, 6.4–6.5, 7.1–7.3 | checkpoints C1–C4 answered |
-| D. Text | Before naive Bayes | 1.2 (cosine), 12.2 (Bayes), 3.4 (sparsity) | text model verified + explained |
+| B. Likelihood | Before logistic regression | 12.1–12.2 + calculus refresher | checkpoints B1–B3 answered |
+| C. Eigen and SVD (optional) | Before PCA | 6.1–6.2, 6.4–6.5, 7.1–7.3 | C1–C3 if you do PCA. C4 belongs to k-means. |
+| D. Text | 12.2 before naive Bayes; 1.2 and 3.4 before TF-IDF (optional) | 1.2 (cosine), 12.2 (Bayes), 3.4 (sparsity) | text model verified + explained |
 | E. Rigor (optional) | After the starter models work | 4.4, 5.1, 7.4, 11.1–11.2 | as needed |
 
 Tracks A and B can overlap: do the probability sections between the math and the coding
 for logistic regression.
+
+Track C is optional. k-means needs only distances. Read track C if you do PCA. Keep C2 as
+a recommended check for `AᵀA`.
 
 ## Track A — least squares
 
@@ -168,6 +171,8 @@ The TA should ask these before advancing a track. Answer without notes.
   what should the code do?
 - **B1.** Why does maximizing the likelihood of Bernoulli data give log-loss?
 - **B2.** Write Bayes' theorem for two classes and say which term naive Bayes assumes away.
+- **B3.** Differentiate the logistic log-loss with respect to `w`. Write the gradient in
+  matrix form.
 - **C1.** Why are eigenvalues of a symmetric matrix real, and why are its eigenvectors
   orthogonal? (6.4)
 - **C2.** Why is `AᵀA` positive definite, and what does that buy you? (6.5.7)

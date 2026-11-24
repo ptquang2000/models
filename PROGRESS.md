@@ -27,15 +27,15 @@ _Set 2026-11-23._
 
 - Track: A. Least squares
 - Model: Phase 0 lab harness (Rust, hand-rolled `Mat`)
-- Reading: ISL §2.2, *Assessing Model Accuracy* (stop at the R lab)
-- Next action: answer the ISL §2.2 gate question closed-book, then write the split's acceptance test before the split code
-- Last session: 2026-11-23 (harness: `Mat` + layout check)
+- Reading: ISL §2.2, *Assessing Model Accuracy* (stop at the Python lab)
+- Next action: settle the three-way split's return shape and size rule, write its acceptance test against the Phase 0 gate, then the split code
+- Last session: 2026-11-24 (ISL §2.2 gate: test error vs. training error, LR-0002)
 
 ## Models
 
 | # | Model | Status | Code | Check that proves it | Explain-back | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 | Lab harness (split, scaler, metrics, gradcheck) | todo | `linux_models.rs` | — | — | `Mat` (arena, row-major) + `test_mat` done 2026-11-23; split, scaler, metrics, gradcheck pending |
+| 0 | Lab harness (split, scaler, metrics) | todo | `models.rs` | — | — | `Mat` (arena, row-major) + `test_mat` done 2026-11-23; split, scaler, metrics pending. Gradient checker moved to build 2 (no gradient exists yet) |
 | 1 | Linear regression, closed form | todo | — | — | — | — |
 | 2 | Linear regression, gradient descent | todo | — | — | — | — |
 | 3 | Random forest regressor | todo | — | — | — | — |
@@ -49,6 +49,9 @@ _Set 2026-11-23._
 | 11 | Multinomial naive Bayes | todo | — | — | — | — |
 | 12 | TF-IDF + logistic regression | todo | — | — | — | — |
 | 13 | Capstone report | todo | — | — | — | — |
+
+Required for the mission: 0, 1, 2, 5, 8, 11, 13. Builds 3, 4, 6, 7, 9, 10, and 12 are
+optional depth. Their explain-backs are still required.
 
 ## Math track
 
@@ -114,6 +117,7 @@ Answer without notes. The TA asks one per session, not all at once.
 | A4 | Two identical columns: what breaks, and what should the code do? | todo | — |
 | B1 | Why does Bernoulli likelihood maximization give log-loss? | todo | — |
 | B2 | State Bayes' theorem and name naive Bayes' assumption | todo | — |
+| B3 | Differentiate the logistic log-loss. Write the gradient in matrix form. | todo | — |
 | C1 | Why are symmetric-matrix eigenvalues real and eigenvectors orthogonal? | todo | — |
 | C2 | Why is `AᵀA` positive definite, and what does it buy? | todo | — |
 | C3 | What does the first singular vector of centered data point along? | todo | — |
@@ -158,7 +162,7 @@ Tick only after an explain-back.
 - [ ] DBSCAN: density, core/border/noise, ε sensitivity
 - [ ] Naive Bayes: conditional independence, smoothing, log-space
 - [ ] TF-IDF: term weighting, document normalization, sparsity, cosine similarity
-- [ ] SVD and PCA: variance maximization, centering, explained variance
+- [ ] SVD and PCA: variance maximization, centering, explained variance (optional)
 
 ## Retrieval queue
 
@@ -169,9 +173,9 @@ forward progress; if an item is weak, drill it, then continue the phase.
 | Item | Last asked | Suggested next | Result |
 | --- | --- | --- | --- |
 | What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-23 | 2026-11-26 | pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
-| `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-21 | 2026-11-24 | shaky — needed 3 attempts |
+| `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-24 | 2026-12-01 | pass, vectors first try. First proof wrote `v·w = cos θ` (dropped `|v||w|`); corrected to the ratio and produced 1 / 0 / −1 in one line each. Side condition `v ≠ 0` still had to be supplied |
 | Row `i` of `A` dotted with `x`: what does it return, and why does the column picture give the same `b`? | 2026-11-23 | 2026-11-26 | partial — dot products computed correctly, no reason given for the agreement |
-| Why estimate performance on data the model hasn't seen? | 2026-11-23 | 2026-11-24 | asked at the split gate, no answer yet |
+| Why estimate performance on data the model hasn't seen? | 2026-11-24 | 2026-11-27 | pass. Mechanism reached via a 2-point line (training MSE 0 for any pair of points, predictable without data). Correction absorbed: `f̂` from training, test observations only supply `(x0, y0)`. LR-0002 |
 
 ## Session log
 
@@ -179,6 +183,8 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
+| 2026-11-24 | plan | Path review against the mission and the teach skill | The path now starts from the mission. Required core: builds 0, 1, 2, 5, 8, 11, 13. Upgrades keep their builds as optional depth, and their explain-backs stay required. Add a validation set, the L2 reading, checkpoint B3, and the dataset gate. Mark track C optional. | Write the three-way split test |
+| 2026-11-24 | reading | ISL §2.2, *Assessing Model Accuracy* | Test-error item passed after a 2-point micro-example: training MSE is 0 for any pair of points and was predicted before computing. `f̂`-comes-from-train correction absorbed. Training set / test set / test MSE entered the glossary. LR-0002 | Write the split acceptance test |
 | 2026-11-23 | harness | Phase 0: `Mat` + layout check | `Mat` over the arena with `test_mat` pinning `set`/`get` and the row-major stride; the first draft's out-of-bounds `copy_nonoverlapping` was removed after review; a transposed stride fails the check | Answer the ISL §2.2 question, then write the split acceptance test |
 | 2026-11-23 | math | §1.3 problems 1, 4, 6 | p1 stalled on row-vs-column assembly until a 2×2 micro-example; p4 and p6 correct after component-level probing, not before | Phase 0 harness: choose array library, then split + scaler |
 | 2026-11-20 | math | §1.1 problems 1, 19, 25 | all correct after 3 rounds of prompts; recurring error: dropping one condition from the question | §1.2 problems 1, 2, 3, 8, 12 |

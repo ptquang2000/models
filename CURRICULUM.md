@@ -17,6 +17,31 @@ what to build and what must be true when it is done.
 | Group unlabeled data | k-means | Hierarchical clustering / DBSCAN |
 | Text classification | Naive Bayes | Logistic regression with TF-IDF |
 
+## Path to the mission
+
+The mission sets the final goal. This table gives the shortest path to that goal. Each row
+is one gate. A build does not start before its prerequisites pass.
+
+The math gates are in `MATH-MAP.md`. Checkpoints A2 and B3 cover the two derivations in
+the mission.
+
+F1 is the harmonic mean of precision and recall.
+
+| Build | Step | Gate |
+| --- | --- | --- |
+| 0 | Lab harness: split, scaler, metrics | The tests pass. The leak test fails. |
+| 1 | Linear regression, closed form | The normal equations work. The residual is orthogonal to the columns. |
+| 2 | Linear regression, gradient descent | The loss does not increase. The gradient check passes. |
+| 5 | Logistic regression | The gradient check passes. Probabilities are in (0, 1). F1 beats the baseline. |
+| 8 | k-means | Inertia does not increase. The code recovers three blobs. |
+| 11 | Multinomial naive Bayes | Probabilities sum to 1. F1 beats the baseline. |
+| 13 | Capstone | The report passes its checks. One command reproduces every number. |
+
+Builds 3, 4, 6, 7, 9, 10, and 12 are optional depth. The mission requires an explanation
+of each upgrade, not its code. Read the upgrade source and answer when it beats the
+starter. The upgrade explain-backs are required. Build 3 and build 6 hold the tree code
+that builds 4 and 7 reuse.
+
 ## Reading track
 
 Every build has one primary reading, pinned to a section, read before the code and only to
@@ -26,12 +51,12 @@ this table is the "why it works" reading.
 
 | # | Build | Read before coding | Stop at | What it answers |
 | --- | --- | --- | --- | --- |
-| 0 | Lab harness | ISL §2.2, *Assessing Model Accuracy* | the R lab | why held-out error, not training error, estimates performance |
+| 0 | Lab harness | ISL §2.2, *Assessing Model Accuracy* | the Python lab | why held-out error, not training error, estimates performance |
 | 1 | Linear regression, closed form | ISL §3.1–3.2 | §3.3 | what least squares estimates, and what R² does and does not say |
 | 2 | Linear regression, gradient descent | Boyd & Vandenberghe ch. 5, the gradient-descent part | Newton's method | step size, convergence, why scaling changes the path |
 | 3 | Random forest regressor | ISL §8.1–8.2 | the ch. 8 lab | greedy splitting, bagging, why averaging cuts variance |
 | 4 | XGBoost regressor | Chen & Guestrin (2016), introduction and regularized objective | the system-design section | the gain formula, and why the objective is second-order |
-| 5 | Logistic regression | ISL §4.1–4.3 | §4.4 | log-odds, sigmoid, why log-loss and not squared error |
+| 5 | Logistic regression | ISL §4.1–4.3, §4.4.2 pp. 155–156, §6.2.1 (ridge) | §4.4.3 | log-odds, sigmoid, why log-loss and not squared error |
 | 6 | Random forest classifier | ISL §8.1, the classification parts | §8.2 | Gini vs. entropy, probability leaves |
 | 7 | XGBoost classifier | Chen & Guestrin (2016), the logistic objective | the system-design section | base score from the prior, calibrated probabilities |
 | 8 | k-means | ISL §12.4.1 | §12.4.2 | the within-cluster objective, and why Lloyd cannot increase it |
@@ -54,18 +79,49 @@ Rules:
    the acceptance test is written down before the code.
 5. **Reading is not progress.** A build moves to `verified` on tests, never on pages read.
    A term enters `GLOSSARY.md` only after it is used correctly.
+6. **A starter model counts as implemented only from a blank file.** Close the reference
+   and the previous code. Write the model again. A model copied from a reference is a
+   `demo`, not `verified`.
+7. **Every build has two gates.** Write the acceptance test and one explain-back question
+   before the code. The build passes when the tests pass and the answer is correct without
+   notes.
+8. **The test set is read once.** Fit the scaler on train. Make every choice on train or
+   validation. Touch the test set only for the final number.
+
+An **acceptance test** is the written statement of what must be true for a build to count
+as done. Write it before any code exists. It pins observable behavior: outputs, invariants,
+and error cases. It does not pin the internal steps. The implementation cannot define its
+own success.
 
 ## Phase 0 — Lab harness
 
-Not a model, but nothing else is measurable without it.
+Not a model, but nothing else is measurable without it. Build the three pieces in this
+order. Each piece is the tool that measures the next piece.
 
-- Deterministic train/test split, seeded.
-- Standardization with `fit` on train only and `transform` applied to both splits.
-- Metrics: MSE, RMSE, MAE, R², accuracy, precision, recall, F1, confusion matrix.
-- Finite-difference gradient checker.
+1. **Seeded three-way split.** Divide the observation indices `0..n` into a train set, a
+   validation set, and a test set. The split is a function of `(n, seed, train_share,
+   validation_share)` and nothing else. The seed makes an arbitrary choice reproducible.
+   The same four inputs must always give the same three sets. The split may not read any
+   feature or label value. Determinism is not tidiness. If two runs split differently,
+   every comparison mixes a model difference with a split difference.
+2. **Standardization, fitted on train only.** Compute one mean and one standard deviation
+   per feature on the train rows. Apply `(x − mean) / std` to all three sets. If the
+   statistics come from all rows, the test rows change the scaling of the train rows. That
+   is leakage.
+3. **Metrics.** MSE only. It is the one metric §2.2 uses, and the only metric that means
+   anything before a model exists. R² enters with build 1, where §3.2 defines it. RMSE and
+   MAE are one-line definitions in the session when build 1 needs them. Accuracy,
+   precision, recall, the confusion matrix, and F1 enter with build 5 (§4.4.2, pp. 155–156),
+   the first classifier.
 
-**Acceptance:** every metric matches a reference library on a fixed vector to 1e-12; a
-deliberately leaky scaler test fails; the gradient checker flags a wrong gradient.
+The finite-difference gradient checker belongs to build 2. Build 2 is the first build with
+a gradient to check.
+
+**Acceptance:** the split is reproducible from its seed, disjoint, and exhaustive. The
+three sizes follow one stated rule, including when the shares do not divide evenly. Each
+implemented metric matches a hand-computed fixture to 1e-12. A deliberately leaky scaler
+test fails. Make every choice on train or validation. Do not touch the test set before the
+final number.
 
 ## Phase 1 — Predict a number
 
@@ -73,12 +129,13 @@ deliberately leaky scaler test fails; the gradient checker flags a wrong gradien
 
 - **Math:** projection onto a column space, normal equations, why AᵀA is invertible for
   full column rank (Strang 4.1–4.3).
-- **Build:** `fit(X, y)` solving AᵀAx = Aᵀb; `predict`; intercept handling; optional L2 via
-  a modified normal-equations system.
+- **Build:** `fit(X, y)` solves AᵀAx = Aᵀb; `predict`; intercept handling. L2 is deferred
+  to build 5, where the reading defines it.
 - **Fundamentals:** least squares as orthogonal projection, residual orthogonality,
   rank and multicollinearity, R² vs. RMSE.
 - **Acceptance:** agrees with the gradient-descent version to 1e-6; residual `e = y − ŷ` is
-  orthogonal to the columns of X to 1e-10; singular X raises a clear error instead of
+  orthogonal to the columns of X to 1e-10; R² matches a hand-computed `1 − SSE/SST` fixture
+  and is greater than 0 on the validation set; singular X raises a clear error instead of
   returning garbage.
 - **Stretch:** weighted least squares; compare `solve` vs. explicit inverse for
   conditioning.
@@ -86,11 +143,15 @@ deliberately leaky scaler test fails; the gradient checker flags a wrong gradien
 ### 2. Linear regression, gradient descent
 
 - **Math:** derivative of ‖Xw − y‖², learning rate, convexity.
-- **Build:** batch gradient descent with a loss history; optional mini-batch.
+- **Build:** batch gradient descent with a loss history; optional mini-batch; the
+  finite-difference gradient checker (central difference against the analytic gradient).
 - **Fundamentals:** why GD is needed for models without a closed form, convergence vs.
-  step size, feature scaling's effect on conditioning, epoch vs. iteration.
-- **Acceptance:** loss is non-increasing at a small enough step; gradient check passes;
-  final weights match the closed form on standardized data.
+  step size, epoch vs. iteration, and feature scaling. Conditioning is the ratio between
+  the largest and smallest curvature of the loss surface. A large ratio makes the steps
+  slow.
+- **Acceptance:** loss is non-increasing at a small enough step; the gradient checker
+  agrees to relative error < 1e-6 in float64 on 3–5 parameters and flags a deliberately
+  wrong gradient; final weights match the closed form on standardized data.
 - **Stretch:** momentum; compare iterations to convergence with and without scaling.
 
 ### 3. Random forest regressor
@@ -124,13 +185,13 @@ deliberately leaky scaler test fails; the gradient checker flags a wrong gradien
 - **Math:** log-odds, sigmoid, maximum likelihood, log-loss, gradient and Hessian;
   probability basics (Strang 12.1–12.2); chain rule.
 - **Build:** binary logistic regression by gradient descent; L2 regularization; class
-  weights optional; stable sigmoid.
+  weights optional; stable sigmoid; precision, recall, and F1 from the confusion matrix.
 - **Fundamentals:** MLE vs. least squares, cross-entropy, why the loss is convex, decision
   threshold vs. ranking, calibration, imbalanced classes.
-- **Acceptance:** gradient check passes; loss decreases monotonically; predicted
-  probabilities sum correctly per row and lie in (0, 1); accuracy matches a reference
-  implementation within 1% on a small standardized dataset; decision boundary plotted for
-  two features.
+- **Acceptance:** the gradient check passes; the loss decreases at every step; each row
+  gets one probability in (0, 1); two runs from different starting points agree to 1e-6;
+  F1 on the validation set beats the majority-class baseline; the decision boundary plot
+  exists for two features.
 - **Stretch:** Newton/IRLS; multiclass softmax; ROC and AUC from scratch.
 
 ### 6. Random forest classifier
@@ -208,9 +269,9 @@ deliberately leaky scaler test fails; the gradient checker flags a wrong gradien
 - **Fundamentals:** the independence assumption and why it still works, prior vs.
   likelihood, smoothing as a prior, unseen words, why accuracy is misleading on imbalanced
   text.
-- **Acceptance:** probabilities sum to 1; adding a constant to every count does not change
-  predictions; beats the majority-class baseline by a wide margin on SMS spam; a
-  hand-computed 2-word example matches.
+- **Acceptance:** the class probabilities sum to 1; adding a constant to every count does
+  not change the predicted class; F1 on the validation set beats the majority-class
+  baseline; a hand-computed 2-word example matches.
 - **Stretch:** complement NB; binary vs. multinomial event model; effect of stop words.
 
 ### 12. TF-IDF + logistic regression
@@ -232,19 +293,23 @@ deliberately leaky scaler test fails; the gradient checker flags a wrong gradien
 One dataset, one report, no new model code.
 
 - Baseline (mean or majority class), starter model, upgrade model, same split and metric.
+- Cross-validation numbers for the final comparison.
 - Learning curves and one failure case per model.
+- One paragraph per upgrade: when it beats the starter, and the source for the claim.
 - A short written defence: why this model, what it assumes, where it breaks, what you
   would do with 10× more data.
 - One reproducibility command that regenerates every number.
 
-**Acceptance:** the report's claims can be checked by running the command; no metric is
-reported on training data alone; the model choice is justified with a validation number,
-not a preference.
+**Acceptance:** the report's claims are checkable with the command. No metric comes from
+training data alone. The model choice follows a validation number, not a preference.
 
 ## Datasets
 
 Use small, local, fast data. Loading a checked-in CSV or generating synthetic data is fine;
 using an ML crate's estimators inside model code is not.
+
+Choose the capstone dataset and its problem type before build 1. Record the choice in
+`NOTES.md`. Choose one small set for each other phase.
 
 | Phase | Suggested data |
 | --- | --- |
@@ -256,7 +321,9 @@ using an ML crate's estimators inside model code is not.
 ## Rules for upgrades
 
 - Never start the upgrade until the starter is `verified` and has a recorded baseline.
-- Implement the upgrade from the same interface, so the comparison is fair.
+- If you implement the upgrade, use the same interface. The comparison must be fair.
 - One new idea per upgrade. If you cannot name the single idea, the scope is too big.
 - The upgrade must earn its complexity with a measured gain, or be documented as a
   negative result.
+- For an upgrade that you explain only, cite the source. Do not report a number that you
+  did not measure.

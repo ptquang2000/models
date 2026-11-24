@@ -1,5 +1,10 @@
 #![cfg_attr(not(test), no_main)]
 
+#[macro_use]
+#[path = "models.rs"]
+mod models;
+use models::*;
+
 const PROT_READ: core::ffi::c_int = 0x1;
 const PROT_WRITE: core::ffi::c_int = 0x2;
 

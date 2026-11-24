@@ -36,6 +36,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log �
 | 2026-11-23 | Each build has a pinned, section-level primary reading; a build does not start until that reading is done and its terms are defined | Learner asked to study each concept before coding it; the reading track lives in `CURRICULUM.md` |
 | 2026-11-23 | Platform/model split: OS-level failure handling (mmap, file I/O) is platform code; model code assumes valid memory | Learner's call — mirrors Handmade Hero's platform/game separation |
 | 2026-11-23 | Checks run manually (`./build/linux_models_test`), not from `build.sh` | Learner's call — build and check stay separate |
+| 2026-11-24 | Required core is builds 0, 1, 2, 5, 8, 11, 13; builds 3, 4, 6, 7, 9, 10, 12 are optional depth | The mission asks for four starter models and an explanation of the upgrades. The full 13-build path exceeded that goal. The upgrade explain-backs stay required. |
 
 ## Baseline
 
