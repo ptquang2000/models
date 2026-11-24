@@ -6,6 +6,6 @@ mkdir -p build
 pushd build >/dev/null
 
 rustc --error-format=short $COMPILER_FLAGS $LINK_FLAGS $ROOT/linux_models.rs --crate-type bin
-rustc --error-format=short $COMPILER_FLAGS $LINK_FLAGS $ROOT/linux_models.rs --test -o linux_models_test
+rustc --error-format=short $COMPILER_FLAGS $LINK_FLAGS $ROOT/models.rs --test
 
 popd >/dev/null

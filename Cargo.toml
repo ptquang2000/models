@@ -12,5 +12,9 @@ path = "linux_models.rs"
 name = "osx_models"
 path = "osx_models.rs"
 
+[[bin]]
+name = "win32_models"
+path = "win32_models.rs"
+
 [lints.rust]
 unused = "allow"
