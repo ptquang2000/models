@@ -28,8 +28,8 @@ _Set 2026-11-23._
 - Track: A. Least squares
 - Model: Phase 0 lab harness (Rust, hand-rolled `Mat`)
 - Reading: ISL §2.2, *Assessing Model Accuracy* (stop at the Python lab)
-- Next action: settle the three-way split's return shape and size rule, write its acceptance test against the Phase 0 gate, then the split code
-- Last session: 2026-11-24 (ISL §2.2 gate: test error vs. training error, LR-0002)
+- Next action: compute the four split cases by hand (`n = 10, 11, 8, 3` at `60 / 20 / 20`), then write the acceptance test from them, then the sizes code
+- Last session: 2026-11-25 (split contract; §1.1 retrieval closed, LR-0003)
 
 ## Models
 
@@ -176,7 +176,7 @@ forward progress; if an item is weak, drill it, then continue the phase.
 
 | Item | Source | Last asked | Suggested next | Result |
 | --- | --- | --- | --- | --- |
-| What is a linear combination? What does the set of all combinations of two vectors look like? | §1.1 | 2026-11-23 | 2026-11-26 | partial — pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
+| What is a linear combination? What does the set of all combinations of two vectors look like? | §1.1 | 2026-11-25 | 2026-11-28 | pass after three sessions on it. A numeric drill worked where notation failed twice: plane for the non-parallel pair, line (the x-axis) for the parallel pair, and he found the `y = 0` obstruction unaided. Two defects: "transform" used for "scalar multiple", and the plane claim argued from its own label instead of from the count. Re-say assigned. LR-0003 |
 | `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | §1.2 | 2026-11-24 | 2026-12-01 | pass, vectors first try. First proof wrote `v·w = cos θ` (dropped `|v||w|`); corrected to the ratio and produced 1 / 0 / −1 in one line each. Side condition `v ≠ 0` still had to be supplied |
 | Row `i` of `A` dotted with `x`: which entry of `b` does it produce? | §1.3 | 2026-11-24 | 2026-11-25 | pass. The narrow claim only: the entry. It took two asks, 2026-11-23 and 2026-11-24 |
 | Why does the column picture produce the same `b`? | §2.1 | — | — | waiting. Asked 2026-11-24 ahead of the reading; that was my error, not a failed retrieval. Activates after §2.1 is `verified` |
@@ -188,6 +188,7 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
+| 2026-11-25 | harness | Build 0 split contract; §1.1 retrieval | Ratio fixed at `60 / 20 / 20`. Leftover rule B (largest fractional part, tie train → validation → test) proposed and not yet signed. Empty set must error. §1.1 queue item closed after a numeric drill (LR-0003); two wording defects named. Test order changed: hand cases before the test (`NOTES.md`). `models_random.rs` reviewed (dead file, seed-as-offset, table range) and no longer in the working tree | Compute the four cases |
 | 2026-11-25 | process | Retrieval queue gate | A check-in on 2026-11-24 tested the §2.1 column picture while §2.1 was `todo`. The queue gained a `source` column and a gate rule in `AGENTS.md`; the broken item split into an askable §1.3 claim (pass) and a `waiting` §2.1 item | Split return shape and size rule |
 | 2026-11-24 | plan | Path review against the mission and the teach skill | The path now starts from the mission. Required core: builds 0, 1, 2, 5, 8, 11, 13. Upgrades keep their builds as optional depth, and their explain-backs stay required. Add a validation set, the L2 reading, checkpoint B3, and the dataset gate. Mark track C optional. | Write the three-way split test |
 | 2026-11-24 | reading | ISL §2.2, *Assessing Model Accuracy* | Test-error item passed after a 2-point micro-example: training MSE is 0 for any pair of points and was predicted before computing. `f̂`-comes-from-train correction absorbed. Training set / test set / test MSE entered the glossary. LR-0002 | Write the split acceptance test |

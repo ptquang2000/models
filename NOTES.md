@@ -19,6 +19,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log â€
 - **Progress must persist.** Update `PROGRESS.md` at the end of every session; write
   learning records when understanding is demonstrated.
 - **Direct feedback.** No praise padding, no hedging. Three review comments maximum.
+- **Cases before gates.** A test written before the rule is understood turns into a guess, then into a copy of the implementation. Compute the rule's cases by hand first, and write the test from those cases.
 
 ## Decisions
 
@@ -38,6 +39,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log â€
 | 2026-11-23 | Checks run manually (`./build/linux_models_test`), not from `build.sh` | Learner's call â€” build and check stay separate |
 | 2026-11-24 | Required core is builds 0, 1, 2, 5, 8, 11, 13; builds 3, 4, 6, 7, 9, 10, 12 are optional depth | The mission asks for four starter models and an explanation of the upgrades. The full 13-build path exceeded that goal. The upgrade explain-backs stay required. |
 | 2026-11-25 | Retrieval items carry a `source` and are askable only when that source is `verified` or later | A check-in on 2026-11-24 tested the Â§2.1 column-picture idea while Â§2.1 was still `todo`. The learner had not studied it, so the failure was mine. The queue now gates every item on its source. |
+| 2026-11-25 | Build 0 order: hand cases first, then the acceptance test | The learner reported that test-first blocked his understanding of the split. The test now comes from cases he computes by hand, and never from the output of his code. |
 
 ## Baseline
 

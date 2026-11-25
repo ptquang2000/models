@@ -93,6 +93,10 @@ as done. Write it before any code exists. It pins observable behavior: outputs, 
 and error cases. It does not pin the internal steps. The implementation cannot define its
 own success.
 
+A test enforces a rule. It cannot invent one. When a build contains a free choice — a size
+rule for remainders, a tie-break, a default tolerance — write the choice in prose beside the
+test, then let the test enforce it. Test-first does not remove the decision.
+
 ## Phase 0 — Lab harness
 
 Not a model, but nothing else is measurable without it. Build the three pieces in this
