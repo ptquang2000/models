@@ -37,6 +37,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log �
 | 2026-11-23 | Platform/model split: OS-level failure handling (mmap, file I/O) is platform code; model code assumes valid memory | Learner's call — mirrors Handmade Hero's platform/game separation |
 | 2026-11-23 | Checks run manually (`./build/linux_models_test`), not from `build.sh` | Learner's call — build and check stay separate |
 | 2026-11-24 | Required core is builds 0, 1, 2, 5, 8, 11, 13; builds 3, 4, 6, 7, 9, 10, 12 are optional depth | The mission asks for four starter models and an explanation of the upgrades. The full 13-build path exceeded that goal. The upgrade explain-backs stay required. |
+| 2026-11-25 | Retrieval items carry a `source` and are askable only when that source is `verified` or later | A check-in on 2026-11-24 tested the §2.1 column-picture idea while §2.1 was still `todo`. The learner had not studied it, so the failure was mine. The queue now gates every item on its source. |
 
 ## Baseline
 

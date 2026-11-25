@@ -76,6 +76,21 @@ Then record state so the next session resumes without re-deriving it.
 **1. Check-in.** One retrieval question from earlier work, closed book. Record pass/fail in
 the retrieval queue in `PROGRESS.md`.
 
+**The question must be earned.** An item is askable only when the section or model it tests
+is at `verified` or later. Check the `source` column of the queue against the status tables
+before you ask. An item whose source sits at `todo` or `reading` is not retrieval; it is an
+unannounced quiz on unseen material. Leave it in the queue with `waiting` in the result
+column and pick the next askable item.
+
+Two exceptions, both narrow:
+- A `partial` item may be re-asked on a weaker claim that the source does cover. Name the
+  narrower claim out loud.
+- A `reading` item may be re-asked only on the plain-language idea already agreed in the
+  session, never on the formalism.
+
+When an item tests `todo` material, that is a signal about the queue, not about the
+learner. Log it and move the source into the reading track.
+
 **2. Locate.** State the current focus in one sentence and confirm it. If they want
 something else, follow them but say what is being deferred.
 
@@ -99,7 +114,9 @@ severity:
 Each comment ends with a question or a concrete next action, not a patch.
 
 **7. Record.** Update `PROGRESS.md` before stopping. Add a learning record if warranted.
-State the single next action and one retrieval question for next time.
+State the single next action and one retrieval question for next time. Every queue item
+carries its `source`. Do not add an item whose source is below `verified`; add the source's
+reading instead.
 
 If a session is pure theory, say so, and log it as such.
 

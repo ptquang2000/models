@@ -64,7 +64,7 @@ Sections not listed are SKIP. Assignments and problem numbers are in `MATH-MAP.m
 | 1.1 | Vectors and linear combinations | verified | 2026-11-20 | 1, 19, 25 correct after prompting. Weakness: drops conditions from the question. Explain-back pending |
 | 1.2 | Lengths and dot products | verified | 2026-11-21 | 1, 2, 3, 8, 12 correct. Weak spots: producing a vector at a given angle took 3 attempts; counterexample was checked against the hypothesis but not the conclusion. Explain-back pending |
 | 1.3 | Matrices and `Ax = b` | verified | 2026-11-23 | 1, 4, 6 done. Failure caught: assembled `S` with the given vectors as rows, i.e. computed `Sᵀx`, and asserted the result matched `b`. p4 combination `(1,−2,1)`, plane `b₁−2b₂+b₃=0`, `(1,0,0)` unreachable. p6: `c=3`, `c=−1`, independent for `c≠0` by components, `c=0` → `x=(−3,1,1)`. Explain-back pending |
-| 2.1 | Row and column pictures | todo | — | — |
+| 2.1 | Row and column pictures | todo | — | Assigned 2026-11-24: read §2.1, problems 2, 5, 7. Acts as the prerequisite for the queue item "why does the column picture give the same `b`" |
 | 2.2 | Elimination and pivots | todo | — | — |
 | 2.5 | Inverse matrices | todo | — | — |
 | 2.6 | `A = LU` | todo | — | — |
@@ -170,12 +170,17 @@ Spaced review, not a schedule. Ask the next item whenever a session starts, rega
 dates. Wrong answers go back one interval (1 → 3 → 7 → 21 days). Retrieval never blocks
 forward progress; if an item is weak, drill it, then continue the phase.
 
-| Item | Last asked | Suggested next | Result |
-| --- | --- | --- | --- |
-| What is a linear combination? What does the set of all combinations of two vectors look like? | 2026-11-23 | 2026-11-26 | pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
-| `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | 2026-11-24 | 2026-12-01 | pass, vectors first try. First proof wrote `v·w = cos θ` (dropped `|v||w|`); corrected to the ratio and produced 1 / 0 / −1 in one line each. Side condition `v ≠ 0` still had to be supplied |
-| Row `i` of `A` dotted with `x`: what does it return, and why does the column picture give the same `b`? | 2026-11-23 | 2026-11-26 | partial — dot products computed correctly, no reason given for the agreement |
-| Why estimate performance on data the model hasn't seen? | 2026-11-24 | 2026-11-27 | pass. Mechanism reached via a 2-point line (training MSE 0 for any pair of points, predictable without data). Correction absorbed: `f̂` from training, test observations only supply `(x0, y0)`. LR-0002 |
+**Gate:** an item is askable only when its `source` is `verified` or later. A row with
+`waiting` in the result column sits out until its source gets there. Rule and exceptions:
+`AGENTS.md`, session loop step 1.
+
+| Item | Source | Last asked | Suggested next | Result |
+| --- | --- | --- | --- | --- |
+| What is a linear combination? What does the set of all combinations of two vectors look like? | §1.1 | 2026-11-23 | 2026-11-26 | partial — pass on the cone; gave the notation instead of the geometry for the unrestricted case, so the line-vs-plane condition was dropped again |
+| `w` at 0°, 90°, 180° to `v`: what is it, and what test proves it? | §1.2 | 2026-11-24 | 2026-12-01 | pass, vectors first try. First proof wrote `v·w = cos θ` (dropped `|v||w|`); corrected to the ratio and produced 1 / 0 / −1 in one line each. Side condition `v ≠ 0` still had to be supplied |
+| Row `i` of `A` dotted with `x`: which entry of `b` does it produce? | §1.3 | 2026-11-24 | 2026-11-25 | pass. The narrow claim only: the entry. It took two asks, 2026-11-23 and 2026-11-24 |
+| Why does the column picture produce the same `b`? | §2.1 | — | — | waiting. Asked 2026-11-24 ahead of the reading; that was my error, not a failed retrieval. Activates after §2.1 is `verified` |
+| Why estimate performance on data the model hasn't seen? | ISL §2.2 | 2026-11-24 | 2026-11-27 | pass. Mechanism reached via a 2-point line (training MSE 0 for any pair of points, predictable without data). Correction absorbed: `f̂` from training, test observations only supply `(x0, y0)`. LR-0002 |
 
 ## Session log
 
@@ -183,6 +188,7 @@ Newest first. One line each: date, type, focus, evidence, next action.
 
 | Date | Type | Focus | Evidence | Next |
 | --- | --- | --- | --- | --- |
+| 2026-11-25 | process | Retrieval queue gate | A check-in on 2026-11-24 tested the §2.1 column picture while §2.1 was `todo`. The queue gained a `source` column and a gate rule in `AGENTS.md`; the broken item split into an askable §1.3 claim (pass) and a `waiting` §2.1 item | Split return shape and size rule |
 | 2026-11-24 | plan | Path review against the mission and the teach skill | The path now starts from the mission. Required core: builds 0, 1, 2, 5, 8, 11, 13. Upgrades keep their builds as optional depth, and their explain-backs stay required. Add a validation set, the L2 reading, checkpoint B3, and the dataset gate. Mark track C optional. | Write the three-way split test |
 | 2026-11-24 | reading | ISL §2.2, *Assessing Model Accuracy* | Test-error item passed after a 2-point micro-example: training MSE is 0 for any pair of points and was predicted before computing. `f̂`-comes-from-train correction absorbed. Training set / test set / test MSE entered the glossary. LR-0002 | Write the split acceptance test |
 | 2026-11-23 | harness | Phase 0: `Mat` + layout check | `Mat` over the arena with `test_mat` pinning `set`/`get` and the row-major stride; the first draft's out-of-bounds `copy_nonoverlapping` was removed after review; a transposed stride fails the check | Answer the ISL §2.2 question, then write the split acceptance test |
