@@ -13,23 +13,29 @@ what it is for.
 
 - `docs/Ed 5, Gilbert Strang - Introduction to Linear Algebra (2016, Wellesley-Cambridge
   Press).pdf`
-  The linear algebra reference. Use for: chapters 1–4, 6–7, 12 as mapped in `MATH-MAP.md`.
+  The linear algebra reference. Use for: chapters 1–4, 6–7, 12 as mapped in `reference/math-map.html`.
 - `docs/Solutions Manual for Introduction to Linear Algebra Fifth Edition by Gilbert
   Strang.pdf`
   Answers to the problem sets. Use only to check a real attempt; reading first does not
   count as practice.
 - `docs/ISLR_First_Printing.pdf`
   James et al., *An Introduction to Statistical Learning*, 2nd ed., first printing (R).
-  The reading track in `CURRICULUM.md`. §2.2 verified: printed pp. 29–41 = PDF
+  The reading track in `reference/curriculum.html`. §2.2 verified: printed pp. 29–41 = PDF
   pp. 42–54; §2.3 R lab starts PDF p. 55.
 - `docs/james2023islp.pdf`
   James et al., *An Introduction to Statistical Learning with Applications in Python*
   (ISLP, 2023). Same text as the R printing, different pagination. The learner reads from
   this one. §2.2 verified: printed pp. 27–39 = PDF pp. 37–49 (offset +10); 2.2.1 p. 28,
   2.2.2 p. 31, 2.2.3 p. 34; §2.3 Python lab starts printed p. 40. Subtract 2 from any
-  printed page number in `CURRICULUM.md` / `MATH-MAP.md` when reading this edition.
+  printed page number in `reference/curriculum.html` / `reference/math-map.html` when reading this edition.
 
 ## Knowledge
+
+### Programming
+
+- [The Rust Programming Language](https://doc.rust-lang.org/book/)
+  The language reference. Use for: the programming prerequisite repair unit, chapters 3–4,
+  8, and 11 only. The learner is strong. Read only the gap.
 
 ### Linear algebra
 
@@ -93,6 +99,12 @@ what it is for.
 - [Distill — Why Momentum Really Works](https://distill.pub/2017/momentum/)
   Interactive explanation of conditioning and momentum. Use for: when gradient descent
   crawls and you want to understand why.
+
+## Gaps
+
+- **Programming prerequisite repair.** The path tests Rust skill but does not teach it. Use
+  the Rust book, chapters 3–4, 8, and 11, only if the diagnostic fails.
+- **Capstone dataset.** Not chosen. The dataset gate is before element 1.
 
 ## Wisdom (communities)
 

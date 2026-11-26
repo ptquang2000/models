@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math map</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<p class="small muted">Reference document</p>
+<nav class="small muted"><a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a> · <a href="../NOTES.md">Notes</a> · <a href="glossary.html">Glossary</a> · <a href="curriculum.html">Curriculum</a> · <a href="math-map.html">Math map</a> · <a href="progress.html">Progress</a> · <a href="../study/README.md">Study elements</a> · <a href="../lessons/">Lessons</a></nav>
+<h1>Math map — Strang, <em>Introduction to Linear Algebra</em>, 5th ed.</h1>
+<p>Source of record: <code>../docs/Ed 5, Gilbert Strang - Introduction to Linear Algebra (2016,
+Wellesley-Cambridge Press).pdf</code>
+Answers: <code>../docs/Solutions Manual for Introduction to Linear Algebra Fifth Edition by
+Gilbert Strang.pdf</code></p>
+<p>Every section and problem number below was checked against those PDFs. If a number here
+disagrees with the book, the book wins — fix this file.</p>
+<p>This file is linear algebra and probability only. The "why the model works" reading is in
+<code>curriculum.html</code> under <strong>Reading track</strong>.</p>
+<h2>Rules of engagement</h2>
+<ol>
+<li><strong>Tiers are decisions, not suggestions.</strong> MUST = read and solve. SKIM = read the
+   summary and one worked example. SKIP = do not open it.</li>
+<li><strong>Work the assigned subset to completion</strong> — roughly 30–40% of each problem set, chosen
+   by concept. That subset is the definition of done; the unassigned problems do not exist.
+   This is a scope limit, not a time limit.</li>
+<li><strong>Pick in this order:</strong> conceptual first problems → problems marked
+   <em>Recommended</em>/<em>Important</em> → one problem that connects to the model you are building.
+   Ignore the rest.</li>
+<li><strong>Skip drills.</strong> Long elimination by hand, cofactor expansions, Cramer's rule, and
+   determinant arithmetic teach typing, not structure. Do one example by hand, then verify
+   in code.</li>
+<li><strong>Solutions manual only after a real attempt.</strong> If you read the answer first, the
+   problem does not count. Mark it <code>demo</code> in <code>progress.html</code>.</li>
+<li><strong>One section at a time.</strong> Read the summary at the top, then the examples, then the
+   assigned problems. Do not read the whole chapter "to be safe".</li>
+<li><strong>Interleave.</strong> Alternate math and coding on the model that needs it. Math without a use
+   decays fast.</li>
+</ol>
+<h2>Tracks</h2>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Start it when</th>
+<th>Sections</th>
+<th>Done when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. Least squares</td>
+<td>Before linear regression</td>
+<td>1.1–1.3, 2.1–2.2, 2.5–2.6, 3.1–3.5, 4.1–4.3</td>
+<td>checkpoints A1–A4 answered</td>
+</tr>
+<tr>
+<td>B. Likelihood</td>
+<td>Before logistic regression</td>
+<td>12.1–12.2 + calculus refresher</td>
+<td>checkpoints B1–B3 answered</td>
+</tr>
+<tr>
+<td>C. Eigen and SVD (optional)</td>
+<td>Before PCA</td>
+<td>6.1–6.2, 6.4–6.5, 7.1–7.3</td>
+<td>C1–C3 if you do PCA. C4 belongs to k-means.</td>
+</tr>
+<tr>
+<td>D. Text</td>
+<td>12.2 before naive Bayes; 1.2 and 3.4 before TF-IDF (optional)</td>
+<td>1.2 (cosine), 12.2 (Bayes), 3.4 (sparsity)</td>
+<td>text model verified + explained</td>
+</tr>
+<tr>
+<td>E. Rigor (optional)</td>
+<td>After the starter models work</td>
+<td>4.4, 5.1, 7.4, 11.1–11.2</td>
+<td>as needed</td>
+</tr>
+</tbody>
+</table>
+<p>Tracks A and B can overlap: do the probability sections between the math and the coding
+for logistic regression.</p>
+<p>Track C is optional. k-means needs only distances. Read track C if you do PCA. Keep C2 as
+a recommended check for <code>AᵀA</code>.</p>
+<h2>Track A — least squares</h2>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Read</th>
+<th>Problems</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>all</td>
+<td>1, 19, 25</td>
+<td>A feature matrix is a set of column vectors; predictions are linear combinations. 19 shows the cone of nonnegative combinations (convexity); 25 shows span collapse (rank).</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>all</td>
+<td>1, 2, 3, 8, 12</td>
+<td>Dot product = similarity; length = norm; 12 is the projection formula in disguise.</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>all</td>
+<td>1, 4, 6</td>
+<td><code>Ax</code> as a combination of columns; dependence via <code>Wx = 0</code>; which <code>c</code> makes columns dependent.</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>all</td>
+<td>2, 5, 7</td>
+<td>Row picture vs. column picture. 5–7 are the singular/no-solution cases behind rank deficiency.</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>all</td>
+<td>4, 5, 7</td>
+<td>Pivots, permanent vs. temporary breakdown, singular systems. Skip the 2×2 drilling in 1–3.</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>concept only</td>
+<td>3 problems: 2×2 inverse formula, invertible vs. singular, one Gauss–Jordan by hand</td>
+<td>Inverses exist only for full rank; you will almost never invert a matrix in code.</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>summary + one example</td>
+<td>1, 3</td>
+<td><code>A = LU</code> is what <code>solve</code> does. Know it exists; do not practice 3×3 factorization.</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>9–18 only</td>
+<td>4 of 9–18</td>
+<td>Subspace tests. <strong>Skip 1–8</strong> (axiom checking). Column space and nullspace are the point.</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>all</td>
+<td>2, 5, 10</td>
+<td>Nullspace, free variables, rank. This is why one-hot columns and collinear features cause trouble.</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>all</td>
+<td>1, 5</td>
+<td>Complete solution <code>x = x_p + x_n</code>; solvability conditions on <code>b</code>.</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>all</td>
+<td>2, 5, 7</td>
+<td>Independence, basis, dimension. 7 (differences of independent vectors are dependent) builds rank intuition.</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>all</td>
+<td>1, 2, 4</td>
+<td>Dimensions of the four subspaces; the Fundamental Theorem. Read this twice.</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>all</td>
+<td>1, 7, 9, 10</td>
+<td>Orthogonality of the four subspaces. 9 proves <code>AᵀA</code> has the same nullspace as <code>A</code> — the reason normal equations work.</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>all</td>
+<td>1, 9, 13, 17, 21, 27</td>
+<td>Projections onto lines and subspaces, <code>P = A(AᵀA)⁻¹Aᵀ</code>, <code>P² = P</code>, and <code>I − P</code> as the residual maker. This is linear regression.</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>all</td>
+<td>1, 4, 12, 14, 21, 23</td>
+<td>Normal equations, the calculus derivation, the mean/variance link, covariance of the estimate, and which subspace the error lives in. <strong>The core of the track.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>After 4.2–4.3 you should be able to derive <code>AᵀAx = Aᵀb</code> three ways: geometry
+(perpendicular residual), calculus (set the gradient to zero), and algebra (least squares
+normal equations).</p>
+<h2>Track B — likelihood and probability</h2>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Read</th>
+<th>Problems</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.1</td>
+<td>all</td>
+<td>1, 6, 7</td>
+<td>Mean, variance, sample vs. expected, why the sample variance divides by N − 1. 6 drills it; 7 proves the identity.</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>all</td>
+<td>2, 4, 8, 9</td>
+<td>Covariance, independence, product rule, and Bayes' theorem. Problem 9 is naive Bayes in one line.</td>
+</tr>
+<tr>
+<td>Calculus refresher</td>
+<td>derivative rules, chain rule, partial derivatives, <code>d/dx log x</code></td>
+<td>10–15 short exercises from an external source</td>
+<td>Logistic regression is impossible without the chain rule. See Beyond this book.</td>
+</tr>
+</tbody>
+</table>
+<p>You do <strong>not</strong> need measure theory, moment generating functions, or the multivariate
+Gaussian (12.3) for the four starter models.</p>
+<h2>Track C — eigenvalues, SVD, PCA</h2>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Read</th>
+<th>Problems</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1</td>
+<td>all</td>
+<td>1, 2, 3, 8</td>
+<td><code>Ax = λx</code>, trace and determinant checks, how to find λ given <code>x</code> and vice versa.</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>all</td>
+<td>3–4 problems: diagonalization, powers, why <code>Aᵏ → 0</code> needs <code>|λ| &lt; 1</code></td>
+<td>Diagonalization is the cleanest view of repeated matrix application.</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>all</td>
+<td>4, 6, 13, 14</td>
+<td>Symmetric matrices, orthogonal diagonalization, spectral theorem, projection decomposition. 4 (<code>AᵀCA</code> symmetric) is the covariance-matrix pattern.</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td>all</td>
+<td>1, 3, 4, 7, 10</td>
+<td>Positive definiteness, <code>xᵀSx</code>, pivots vs. eigenvalues, and why <code>AᵀA</code> is positive definite for independent columns. 7 is directly about <code>AᵀA</code>.</td>
+</tr>
+<tr>
+<td>7.1</td>
+<td>all</td>
+<td>2–3 problems on the image-compression example</td>
+<td>The SVD as rank-ordered importance. Read the pictures, not the proofs.</td>
+</tr>
+<tr>
+<td>7.2</td>
+<td>all</td>
+<td>2, 6, 7, 13</td>
+<td><code>A = UΣVᵀ</code>, <code>AᵀA</code> vs. <code>AAᵀ</code>, singular values, and the inverse via SVD.</td>
+</tr>
+<tr>
+<td>7.3</td>
+<td>all</td>
+<td>1, 5, 7</td>
+<td>Centering, covariance matrix, PCA by SVD, correlation vs. covariance. This is the clustering/dimensionality bridge.</td>
+</tr>
+</tbody>
+</table>
+<p>Skip 6.3 (differential equations) and 7.4 (pseudoinverse) on the first pass. 7.4 is worth
+one separate pass when you care about rank-deficient least squares.</p>
+<h2>Track D — text</h2>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Read</th>
+<th>Problems</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.2</td>
+<td>review</td>
+<td>3, 7</td>
+<td>Cosine similarity is normalized dot product.</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>review</td>
+<td>8, 9</td>
+<td>Bayes and conditional probability, in the notation naive Bayes uses.</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>review</td>
+<td>5</td>
+<td>Independence in high dimensions; most token columns are nearly dependent.</td>
+</tr>
+</tbody>
+</table>
+<p>Naive Bayes needs no new linear algebra. TF-IDF + logistic regression needs only
+normalization and sparse dot products.</p>
+<h2>Track E — optional rigor</h2>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Why later</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.4 Gram–Schmidt / QR</td>
+<td>Numerical stability of least squares; read after you have felt <code>AᵀA</code> lose precision.</td>
+</tr>
+<tr>
+<td>5.1 Determinants</td>
+<td>Only <code>det A = 0</code> ⟺ singular, and volume scaling. Skip 5.2–5.3 entirely.</td>
+</tr>
+<tr>
+<td>7.4 Pseudoinverse</td>
+<td>Minimum-norm solution for rank-deficient least squares.</td>
+</tr>
+<tr>
+<td>11.1–11.2 Norms and condition numbers</td>
+<td>Why your normal equations are unstable with correlated features.</td>
+</tr>
+<tr>
+<td>11.3 Iterative methods</td>
+<td>Only if you implement large-scale solvers.</td>
+</tr>
+</tbody>
+</table>
+<h2>Skip list</h2>
+<p>Do not open these during the core tracks. Each is real mathematics, none is needed for the
+four problem types:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Why skip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.3 worked examples with cyclic difference matrices</td>
+<td>Cute, not load-bearing. Read the concept, skip the matrices.</td>
+</tr>
+<tr>
+<td>2.3–2.4, 2.7</td>
+<td>Elimination matrices, block multiplication, permutations. Absorb by osmosis.</td>
+</tr>
+<tr>
+<td>3.1 problems 1–8</td>
+<td>Axiom checking. No model needs it.</td>
+</tr>
+<tr>
+<td>3.x challenge problems</td>
+<td>Interesting, off-mission.</td>
+</tr>
+<tr>
+<td>5.2–5.3</td>
+<td>Cofactors, Cramer's rule, volumes. Formulas nobody computes.</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>Differential equations. Different course.</td>
+</tr>
+<tr>
+<td>8.x</td>
+<td>Linear transformations and change of basis. Useful later for deep learning, not now.</td>
+</tr>
+<tr>
+<td>9.1–9.3</td>
+<td>Complex matrices, Hermitian, FFT. Only if you work with signals.</td>
+</tr>
+<tr>
+<td>10.2, 10.5–10.7</td>
+<td>Engineering matrices, Fourier series, graphics, cryptography.</td>
+</tr>
+<tr>
+<td>12.3</td>
+<td>Multivariate Gaussian. Needed for GMMs, not for these models.</td>
+</tr>
+</tbody>
+</table>
+<p>Chapter 10.1 (graphs), 10.3 (Markov), and 10.4 (linear programming) are worth a skim after
+the capstone if you care about networks, ranking, or the geometry of SVMs.</p>
+<h2>Beyond this book</h2>
+<p>Other sources are allowed, not just tolerated. Reach for them when they explain the idea
+better than Strang, then record the addition in <code>../RESOURCES.md</code>. Useful complements:</p>
+<ul>
+<li><strong>Calculus:</strong> derivatives, chain rule, partials, gradients. MIT 18.01SC
+  (<a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/">https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/</a>) or
+  3Blue1Brown's <em>Essence of Calculus</em>
+  (<a href="https://www.3blue1brown.com/topics/calculus">https://www.3blue1brown.com/topics/calculus</a>). Do 10–15 derivative exercises, not a
+  course.</li>
+<li><strong>Probability:</strong> Blitzstein's Stat 110
+  (<a href="https://projects.iq.harvard.edu/stat110">https://projects.iq.harvard.edu/stat110</a>) for intuition; Strang 12 for the
+  linear-algebra view of variance and covariance.</li>
+<li><strong>Optimization:</strong> Boyd &amp; Vandenberghe, <em>Convex Optimization</em>, chapters 1–5
+  (<a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a>). Read convex sets, convex functions, and
+  gradient descent. Skip duality until SVMs.</li>
+<li><strong>Information theory:</strong> entropy and information gain for trees. One read of ESL §9.2
+  (<a href="https://hastie.su.domains/ElemStatLearn/">https://hastie.su.domains/ElemStatLearn/</a>) is enough.</li>
+<li><strong>Numerical linear algebra:</strong> Trefethen &amp; Bau, lectures 1–20, when <code>AᵀA</code> instability
+  becomes a real problem in your code.</li>
+</ul>
+<h2>Checkpoints</h2>
+<p>The TA should ask these before advancing a track. Answer without notes.</p>
+<ul>
+<li><strong>A1.</strong> Why is <code>AᵀA</code> invertible when <code>A</code> has independent columns? (4.1.9)</li>
+<li><strong>A2.</strong> Derive <code>AᵀAx = Aᵀb</code> from "the residual is perpendicular to the column space".</li>
+<li><strong>A3.</strong> What does <code>(I − P)</code> project onto, and why is it the residual maker? (4.2.17)</li>
+<li><strong>A4.</strong> Given <code>X</code> with two identical columns, what happens to the normal equations, and
+  what should the code do?</li>
+<li><strong>B1.</strong> Why does maximizing the likelihood of Bernoulli data give log-loss?</li>
+<li><strong>B2.</strong> Write Bayes' theorem for two classes and say which term naive Bayes assumes away.</li>
+<li><strong>B3.</strong> Differentiate the logistic log-loss with respect to <code>w</code>. Write the gradient in
+  matrix form.</li>
+<li><strong>C1.</strong> Why are eigenvalues of a symmetric matrix real, and why are its eigenvectors
+  orthogonal? (6.4)</li>
+<li><strong>C2.</strong> Why is <code>AᵀA</code> positive definite, and what does that buy you? (6.5.7)</li>
+<li><strong>C3.</strong> What does the first singular vector of a centered data matrix point along? (7.3)</li>
+<li><strong>C4.</strong> k-means minimizes which objective, and why does Lloyd's algorithm never increase
+  it?</li>
+</ul>
+<h2>Mixed practice (only after a track is done)</h2>
+<p>Textbook problem sets drill one section at a time. For exam-like mixing, use the 18.06
+exams on OCW: <a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/pages/exams/">https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/pages/exams/</a>.
+Do one exam per completed track, open book. That is a better use of a study block than
+finishing the leftover problems.</p>
+</body>
+</html>

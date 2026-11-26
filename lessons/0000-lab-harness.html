@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0000 — Training error is not a test</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<p class="small muted">Lesson 0000 · Lab harness</p>
+<nav class="small muted"><a href="../reference/glossary.html">Glossary</a> · <a href="../reference/curriculum.html">Curriculum</a> · <a href="../reference/progress.html">Progress</a> · <a href="../study/0000-lab-harness.md">Contract</a> · <a href="../reference/">Reference</a></nav>
+
+<h1>Training error is not a test</h1>
+
+<p>You can fit a line through two points exactly. The training error is zero. That number does not tell you whether the line will work on a new point.</p>
+
+<h2>One example</h2>
+
+<p>Fit a line through <code>(0,1)</code> and <code>(1,3)</code>. The line passes through both points. The training MSE is 0.</p>
+
+<p>Fit a line through <code>(0,5)</code> and <code>(1,−2)</code>. The line passes through both points. The training MSE is 0 again.</p>
+
+<p>The result is the same for any pair of points. The fit uses the points that score it. The number is fixed by the setup, not by the data.</p>
+
+<h2>The mechanism</h2>
+
+<p>The model <code>f̂</code> comes from the training set. The test set supplies new <code>(x₀, y₀)</code> pairs. The test error measures <code>f̂</code> on data it did not see.</p>
+
+<h2>The rule</h2>
+
+<p>Fit on train. Measure on validation. Touch the test set once, for the final number.</p>
+
+<div class="question">
+<h3>Retrieval</h3>
+<p>Why is the training MSE zero for a 2-point line, and why is that not evidence of a good model?</p>
+<details><summary>Show answer</summary>
+<p>The line has two parameters and two points. It can pass through both points. The score uses the same points that set the parameters, so the score is fixed at zero. It says nothing about a new point.</p>
+</details>
+</div>
+
+<h2>Read next</h2>
+
+<p>Primary source: ISL §2.2.1–2.2.2, ISLP 2023, printed pp. 27–33. Stop at the Python lab.</p>
+
+<p>Contract: <a href="../study/0000-lab-harness.md">study/0000-lab-harness.md</a>.</p>
+
+<p>Ask your TA to test the mechanism on a 3-point example. A new point can have a large error even when the training error is zero.</p>
+
+<hr>
+<p class="small muted">The reference card for this element starts after the explain-back. <a href="../reference/curriculum.html">Back to the path</a>.</p>
+</body>
+</html>

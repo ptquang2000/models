@@ -23,10 +23,14 @@ producing understanding.
 
 ## Constraints
 
-- Self-directed and deadline-free. Work continues until each gate in `CURRICULUM.md` is
+- Self-directed and deadline-free. Work continues until each gate in `reference/curriculum.html` is
   met, not until a date or a session count.
 - Stack: Rust, built and tested with cargo. Array library and support crates are the
   learner's choice. Model code uses no ML crate; a reference crate is allowed in tests only.
+- Programming is a prerequisite. The path tests it once and does not teach it. A failure
+  adds a repair unit, not a new core element.
+- The path is study-element based. Each model has a diagnostic, a concept lesson, a reference
+  card, a build, and an explain-back.
 - The linear algebra text on hand is Strang, *Introduction to Linear Algebra*, 5th ed.
   (`docs/`). It is the spine of the math track, not the only permitted source.
 - Math study is scope-bound, not time-bound: the assigned subset of problems is the unit of

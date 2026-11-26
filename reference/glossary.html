@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<p class="small muted">Reference document</p>
+<nav class="small muted"><a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a> · <a href="../NOTES.md">Notes</a> · <a href="glossary.html">Glossary</a> · <a href="curriculum.html">Curriculum</a> · <a href="math-map.html">Math map</a> · <a href="progress.html">Progress</a> · <a href="../study/README.md">Study elements</a> · <a href="../lessons/">Lessons</a></nav>
+<h1>Glossary</h1>
+<p>The canonical language of this repo. Definitions are compressed, opinionated, and written
+in the user's words once they can use the term correctly.</p>
+<p><strong>Rule:</strong> a term enters only after an explain-back, not when it is first mentioned. If the
+user has just been introduced to something, it is not ready.</p>
+<h2>Format</h2>
+<pre><code>&lt;p&gt;&lt;strong&gt;Term&lt;/strong&gt;:
+One or two sentences. Define what it is, not how to do it.
+&lt;em&gt;Avoid&lt;/em&gt;: loose synonyms used elsewhere&lt;/p&gt;</code></pre>
+<p>Use glossary terms inside other definitions. One preferred word per concept; list the
+aliases to avoid. Revise definitions when understanding deepens — a week-one definition is
+often wrong by week six.</p>
+<h2>Terms</h2>
+<p><strong>Linear combination</strong>:
+A sum of scalar multiples of vectors, <code>c u + d v</code>. For two vectors, the set of all of them is a line when one is a multiple of the other and a plane otherwise; adding the restriction <code>c, d ≥ 0</code> shrinks it to a wedge or a ray.
+<em>Avoid</em>: "linear compilation", "mix", "sum of vectors" (that is only the <code>c = d = 1</code> case)</p>
+<p><strong>Column picture</strong>:
+Reading <code>Ax = b</code> as a combination <code>b = x₁a₁ + ⋯ + xₙaₙ</code> of the columns of <code>A</code>. The
+alternative reading, <code>(row i)·x = bᵢ</code>, is the row picture; both produce the same <code>b</code>.
+<em>Avoid</em>: "column view", "column form"</p>
+<p><strong>Training set</strong>:
+The observations a model is allowed to fit on — the only data that may influence <code>f̂</code>.
+<em>Avoid</em>: "the data", "input data"</p>
+<p><strong>Test set</strong>:
+Observations held back from fitting, used only to measure. If anything estimated from the
+test set reaches <code>f̂</code>, the measurement becomes training error wearing its name.
+<em>Avoid</em>: "validation", "holdout" when the split is the fixed single one used for the final number</p>
+<p><strong>Test MSE</strong>:
+The average squared prediction error <code>Ave(y0 − f̂(x0))²</code> over test observations, with <code>f̂</code>
+fixed beforehand. It estimates the error on unseen data; the training MSE is a different
+quantity and is zero for a 2-point line.
+<em>Avoid</em>: "error", "loss", "accuracy" (different quantity)</p>
+<p><strong>Dependent columns</strong>:
+Columns are dependent when some nonzero combination of them is zero, so at least one of
+them lies in the span of the others and the matrix is not invertible. Independent means the
+only zero combination is the all-zero one.
+<em>Avoid</em>: "dependent matrix", "linearly related"</p>
+</body>
+</html>

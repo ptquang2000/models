@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curriculum</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<p class="small muted">Reference document</p>
+<nav class="small muted"><a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a> · <a href="../NOTES.md">Notes</a> · <a href="glossary.html">Glossary</a> · <a href="curriculum.html">Curriculum</a> · <a href="math-map.html">Math map</a> · <a href="progress.html">Progress</a> · <a href="../study/README.md">Study elements</a> · <a href="../lessons/">Lessons</a></nav>
+<h1>Curriculum</h1>
+<p>The mission is the target. This file is the path. The path has one core track and one
+optional track. The core track has seven study elements. Each element teaches one model
+from the ground up and ends at a gate.</p>
+<p>Status lives in <code>progress.html</code>. Math assignments live in <code>math-map.html</code>. The teaching method
+comes from <code>../docs/teach/SKILL.md</code>. This file says what to study, in what order, and what
+must be true when an element is done.</p>
+<h2>Mission core</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Element</th>
+<th>Problem type</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Lab harness</td>
+<td>Measurement</td>
+<td>The tests pass. The leak test fails.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Linear regression, closed form</td>
+<td>Predict a number</td>
+<td>The normal equations work. The residual is orthogonal to the columns.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Linear regression, gradient descent</td>
+<td>Predict a number</td>
+<td>The loss does not increase. The gradient check passes.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Logistic regression</td>
+<td>Sort into categories</td>
+<td>The gradient check passes. Probabilities are in (0, 1). F1 beats the baseline.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>k-means</td>
+<td>Group unlabeled data</td>
+<td>Inertia does not increase. The code recovers three blobs.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Multinomial naive Bayes</td>
+<td>Text classification</td>
+<td>Probabilities sum to 1. F1 beats the baseline.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Capstone</td>
+<td>End to end</td>
+<td>The report passes its checks. One command reproduces every number.</td>
+</tr>
+</tbody>
+</table>
+<p>The core is the mission. Builds 3, 4, 6, 7, 9, 10, and 12 are optional depth. The mission
+requires an explanation of each upgrade, not its code. Read the upgrade source and answer
+when it beats the starter. The upgrade explain-backs are required.</p>
+<h2>The study element</h2>
+<p>A study element is the unit of work. It has five parts. The full template is in
+<code>../study/TEMPLATE.md</code>. The first element is in <code>../study/0000-lab-harness.md</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Output</th>
+<th>Status after the part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Diagnostic</td>
+<td>One closed-book question</td>
+<td><code>todo</code></td>
+</tr>
+<tr>
+<td>2. Concept lesson</td>
+<td>One idea, one numeric example, one source section</td>
+<td><code>reading</code></td>
+</tr>
+<tr>
+<td>3. Reference card</td>
+<td>Definition, formula, failure mode</td>
+<td><code>reading</code></td>
+</tr>
+<tr>
+<td>4. Build</td>
+<td>Code from a blank file</td>
+<td><code>implemented</code></td>
+</tr>
+<tr>
+<td>5. Explain-back</td>
+<td>Answer without notes</td>
+<td><code>explained</code></td>
+</tr>
+</tbody>
+</table>
+<p>The status ladder is in <code>progress.html</code>. A model is done only at <code>verified</code> + <code>explained</code>.
+The concept lesson is an HTML lesson in <code>../lessons/</code>. The reference card is an HTML card in
+<code>../reference/</code>. Both start when the element starts, not before.</p>
+<p>The study element is the contract. The lesson is the teaching. The reference card is the
+compression. The build is the learner's work. The TA does not write the model, the loss,
+the gradient, or the update rule.</p>
+<p>Element 0 has an HTML lesson at <code>../lessons/0000-lab-harness.html</code>. The next
+lesson starts when the next element starts, or earlier if a gap appears.</p>
+<h2>Prerequisite contract: programming</h2>
+<p>Programming is a prerequisite. The path does not teach Rust. It tests the contract once,
+before element 0. The learner must be able to:</p>
+<ol>
+<li>Write a Rust function that takes a slice and returns a value.</li>
+<li>Use a fixed-size array and a slice with explicit indices.</li>
+<li>Read a text file and parse numbers from it.</li>
+<li>Write a <code>#[test]</code> and run it with the build script.</li>
+<li>State the shape of a 2D array and the meaning of each axis.</li>
+<li>Use the command line to build, run, and check the code.</li>
+</ol>
+<p>The diagnostic is in <code>../study/0000-lab-harness.md</code>. A failure adds a repair unit from
+<em>The Rust Programming Language</em>, chapters 3–4, 8, and 11. The repair unit is a
+prerequisite study element. It does not change the core path.</p>
+<h2>Gap-fill protocol</h2>
+<p>A gap is a missing prerequisite. A failed diagnostic or a failed gate is evidence of a gap.
+The rule:</p>
+<ol>
+<li>Name the missing fundamental.</li>
+<li>Add a prerequisite study element to <code>../study/</code>.</li>
+<li>Give it a source and a status in <code>progress.html</code>.</li>
+<li>Pass the prerequisite gate.</li>
+<li>Return to the main element.</li>
+</ol>
+<p>The main element does not move to <code>blocked</code> until two attempts produce no new information.
+A gap is not a failure. It is a path update.</p>
+<h2>Reading track</h2>
+<p>Every element has one primary source. Read it before the concept lesson. Stop at the stated
+point. The source wins if a section number disagrees with this file.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Element</th>
+<th>Primary source</th>
+<th>Stop at</th>
+<th>What it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Lab harness</td>
+<td>ISL §2.2, <em>Assessing Model Accuracy</em></td>
+<td>the Python lab</td>
+<td>why held-out error, not training error, estimates performance</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Linear regression, closed form</td>
+<td>ISL §3.1–3.2</td>
+<td>§3.3</td>
+<td>what least squares estimates, and what R² does and does not say</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Linear regression, gradient descent</td>
+<td>Boyd &amp; Vandenberghe ch. 5, the gradient-descent part</td>
+<td>Newton's method</td>
+<td>step size, convergence, why scaling changes the path</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Logistic regression</td>
+<td>ISL §4.1–4.3, §4.4.2 pp. 155–156, §6.2.1</td>
+<td>§4.4.3</td>
+<td>log-odds, sigmoid, why log-loss and not squared error</td>
+</tr>
+<tr>
+<td>8</td>
+<td>k-means</td>
+<td>ISL §12.4.1</td>
+<td>§12.4.2</td>
+<td>the within-cluster objective, and why Lloyd cannot increase it</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Naive Bayes</td>
+<td>ISL §4.4, the naive Bayes part</td>
+<td>§4.5</td>
+<td>the independence assumption, and why it still works</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Capstone</td>
+<td>ISL ch. 5, <em>Resampling Methods</em></td>
+<td>the lab</td>
+<td>validation vs. cross-validation, reading a learning curve</td>
+</tr>
+</tbody>
+</table>
+<p>Rules:</p>
+<ol>
+<li><strong>One primary source per element.</strong> The rest of the list stays shut until that element is
+   done.</li>
+<li><strong>Section-level and capped.</strong> The "stop at" column is part of the assignment, not a
+   suggestion.</li>
+<li><strong>Verify the section when the element starts.</strong> Chapter numbers here are safe. Section
+   numbers get checked against the PDF. The source wins if they disagree.</li>
+<li><strong>No element starts until three things are true:</strong> the primary source is read, every term
+   in the element contract is defined in words, and the acceptance test is written down
+   before the code.</li>
+<li><strong>Reading is not progress.</strong> An element moves to <code>verified</code> on tests, never on pages read.
+   A term enters <code>glossary.html</code> only after it is used correctly.</li>
+<li><strong>A starter model counts as implemented only from a blank file.</strong> Close the reference and
+   the previous code. Write the model again. A model copied from a reference is a <code>demo</code>,
+   not <code>verified</code>.</li>
+<li><strong>Every element has two gates.</strong> Write the acceptance test and one explain-back question
+   before the code. The element passes when the tests pass and the answer is correct without
+   notes.</li>
+<li><strong>The test set is read once.</strong> Fit the scaler on train. Make every choice on train or
+   validation. Touch the test set only for the final number.</li>
+</ol>
+<p>An <strong>acceptance test</strong> is the written statement of what must be true for an element to count
+as done. Write it before any code exists. It pins observable behavior: outputs, invariants,
+and error cases. It does not pin the internal steps. The implementation cannot define its
+own success.</p>
+<p>A test enforces a rule. It cannot invent one. An element can contain a free choice. Examples
+are a size rule for remainders, a tie-break, and a default tolerance. Write the choice in
+prose beside the test. Then let the test enforce it. Test-first does not remove the decision.</p>
+<h2>Core elements</h2>
+<p>The detailed contract for each element is in <code>../study/</code>. This section gives the one-line
+purpose and the prerequisite order.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>File</th>
+<th>Purpose</th>
+<th>Prerequisite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>../study/0000-lab-harness.md</code></td>
+<td>Measure before you model.</td>
+<td>Programming diagnostic</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>../study/0001-linear-regression-closed-form.md</code></td>
+<td>Fit a line by projection.</td>
+<td>0, MATH-MAP track A</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>../study/0002-linear-regression-gradient-descent.md</code></td>
+<td>Fit a line by descent.</td>
+<td>1, calculus refresher</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>../study/0005-logistic-regression.md</code></td>
+<td>Fit a probability by likelihood.</td>
+<td>2, MATH-MAP track B</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>../study/0008-k-means.md</code></td>
+<td>Group points by distance.</td>
+<td>0, distance and mean</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>../study/0011-multinomial-naive-bayes.md</code></td>
+<td>Classify text by Bayes.</td>
+<td>0, MATH-MAP track B §12.2 and track D</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>../study/0013-capstone.md</code></td>
+<td>Defend one model end to end.</td>
+<td>0, 1, 2, 5, 8, 11</td>
+</tr>
+</tbody>
+</table>
+<h2>Optional depth</h2>
+<p>Builds 3, 4, 6, 7, 9, 10, and 12 are optional. The mission requires an explanation of each
+upgrade, not its code. Use the reading track and the checkpoint questions. Do not start an
+upgrade before the starter is <code>verified</code> and has a recorded baseline.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Upgrade</th>
+<th>Starter</th>
+<th>One new idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Random forest regressor</td>
+<td>Linear regression</td>
+<td>Bagging cuts variance.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>XGBoost regressor</td>
+<td>Random forest regressor</td>
+<td>Boosting fits the residual.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Random forest classifier</td>
+<td>Logistic regression</td>
+<td>Impurity splits beat linear boundaries.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>XGBoost classifier</td>
+<td>Random forest classifier</td>
+<td>Second-order gain speeds convergence.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Hierarchical clustering</td>
+<td>k-means</td>
+<td>Linkage changes the geometry.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DBSCAN</td>
+<td>k-means</td>
+<td>Density finds arbitrary shapes.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>TF-IDF + logistic regression</td>
+<td>Naive Bayes</td>
+<td>Term weights beat raw counts.</td>
+</tr>
+</tbody>
+</table>
+<h2>Capstone</h2>
+<p>One dataset, one report, no new model code. The report has:</p>
+<ul>
+<li>Baseline (mean or majority class), starter model, upgrade model, same split and metric.</li>
+<li>Cross-validation numbers for the final comparison.</li>
+<li>Learning curves and one failure case per model.</li>
+<li>One paragraph per upgrade: when it beats the starter, and the source for the claim.</li>
+<li>A short written defence: why this model, what it assumes, where it breaks, what you would
+  do with 10× more data.</li>
+<li>One reproducibility command that regenerates every number.</li>
+</ul>
+<p><strong>Acceptance:</strong> the report's claims are checkable with the command. No metric comes from
+training data alone. The model choice follows a validation number, not a preference.</p>
+<h2>Datasets</h2>
+<p>Use small, local, fast data. Loading a checked-in CSV or generating synthetic data is fine.
+Using an ML crate's estimators inside model code is not.</p>
+<p>Choose the capstone dataset and its problem type before element 1. Record the choice in
+<code>../NOTES.md</code>. Choose one small set for each other element.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Suggested data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regression</td>
+<td>California housing (subset), or a synthetic nonlinear function</td>
+</tr>
+<tr>
+<td>Classification</td>
+<td>Breast cancer, wine, or a synthetic two-moons set</td>
+</tr>
+<tr>
+<td>Clustering</td>
+<td>Iris without labels, synthetic blobs, moons, concentric circles</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>SMS spam collection, 20 newsgroups (2 categories)</td>
+</tr>
+</tbody>
+</table>
+<h2>Artifacts</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Content</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>../study/</code></td>
+<td>One markdown contract per element.</td>
+<td>Now.</td>
+</tr>
+<tr>
+<td><code>../lessons/</code></td>
+<td>One HTML lesson per element.</td>
+<td>When the element starts.</td>
+</tr>
+<tr>
+<td><code>../reference/</code></td>
+<td>One HTML reference card per element.</td>
+<td>After the explain-back.</td>
+</tr>
+<tr>
+<td><code>../assets/</code></td>
+<td>Shared lesson styles and components.</td>
+<td>Before the first lesson.</td>
+</tr>
+</tbody>
+</table>
+<p>The lesson teaches one idea. The reference card compresses it. The study element is the
+contract. The build is the learner's work.</p>
+</body>
+</html>

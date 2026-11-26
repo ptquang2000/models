@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<p class="small muted">Reference document</p>
+<nav class="small muted"><a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a> · <a href="../NOTES.md">Notes</a> · <a href="glossary.html">Glossary</a> · <a href="curriculum.html">Curriculum</a> · <a href="math-map.html">Math map</a> · <a href="progress.html">Progress</a> · <a href="../study/README.md">Study elements</a> · <a href="../lessons/">Lessons</a></nav>
+<h1>Progress</h1>
+<p>Single source of truth for what is proven. The TA updates this <strong>before</strong> a session ends.
+The human may read it at any time; only evidence moves a status.</p>
+<p><strong>No deadlines.</strong> This is a gate-driven plan: work continues until every model is
+<code>verified</code> + <code>explained</code>, every checkpoint is answered, and the capstone passes. Time
+elapsed is not a progress metric.</p>
+<h2>Status legend</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>todo</code></td>
+<td>Not started</td>
+</tr>
+<tr>
+<td><code>reading</code></td>
+<td>Read the theory, no working code yet</td>
+</tr>
+<tr>
+<td><code>implemented</code></td>
+<td>Code runs end to end, nothing verified</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td>Tests pass, including an oracle or closed-form check</td>
+</tr>
+<tr>
+<td><code>explained</code></td>
+<td>Can state objective, update rule, assumptions, failure mode, without notes</td>
+</tr>
+<tr>
+<td><code>demo</code></td>
+<td>The TA showed the solution; must be redone from a blank file</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>Two attempts produced no new information; needs a prerequisite</td>
+</tr>
+</tbody>
+</table>
+<p>A model is <strong>done</strong> only at <code>verified</code> + <code>explained</code>. Coverage is not progress.</p>
+<h2>Current focus</h2>
+<p><em>Set 2026-11-26.</em></p>
+<ul>
+<li>Path: mission core, element 0 of 7 (<code>../study/0000-lab-harness.md</code>)</li>
+<li>Model: Phase 0 lab harness (Rust, hand-rolled <code>Mat</code>)</li>
+<li>Reading: ISL §2.2, <em>Assessing Model Accuracy</em> (stop at the Python lab)</li>
+<li>Prerequisite: programming diagnostic (see <code>../study/0000-lab-harness.md</code>)</li>
+<li>Next action: run the programming diagnostic, then compute the four split cases by hand
+  (<code>n = 10, 11, 8, 3</code> at <code>60 / 20 / 20</code>), then write the acceptance test from them, then the
+  sizes code</li>
+<li>Last session: 2026-11-26 (path rebuild; teach structure; study elements, programming gate, gap-fill rule; glossary reference)</li>
+</ul>
+<h2>Prerequisite: programming</h2>
+<p>Programming is a prerequisite. The path tests it once, before element 0. A failure adds a
+repair unit from <em>The Rust Programming Language</em>, chapters 3–4, 8, and 11.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Status</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rust function, slice, test, file input, shape statement</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Models</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Model</th>
+<th>Study</th>
+<th>Status</th>
+<th>Code</th>
+<th>Check that proves it</th>
+<th>Explain-back</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Lab harness (split, scaler, metrics)</td>
+<td><a href="../study/0000-lab-harness.md">0000</a></td>
+<td>reading</td>
+<td><code>models.rs</code></td>
+<td>—</td>
+<td>—</td>
+<td><code>Mat</code> (arena, row-major) + <code>test_mat</code> done 2026-11-23; split, scaler, metrics pending. Gradient checker moved to build 2 (no gradient exists yet)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Linear regression, closed form</td>
+<td><a href="../study/0001-linear-regression-closed-form.md">0001</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Linear regression, gradient descent</td>
+<td><a href="../study/0002-linear-regression-gradient-descent.md">0002</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Random forest regressor</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td>XGBoost regressor</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>stretch</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Logistic regression</td>
+<td><a href="../study/0005-logistic-regression.md">0005</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Random forest classifier</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>XGBoost classifier</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>stretch</td>
+</tr>
+<tr>
+<td>8</td>
+<td>k-means</td>
+<td><a href="../study/0008-k-means.md">0008</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Hierarchical clustering</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DBSCAN</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Multinomial naive Bayes</td>
+<td><a href="../study/0011-multinomial-naive-bayes.md">0011</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12</td>
+<td>TF-IDF + logistic regression</td>
+<td>—</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Capstone report</td>
+<td><a href="../study/0013-capstone.md">0013</a></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Required for the mission: 0, 1, 2, 5, 8, 11, 13. Builds 3, 4, 6, 7, 9, 10, and 12 are
+optional depth. Their explain-backs are still required.</p>
+<h2>Gap log</h2>
+<p>Prerequisite units added by the gap-fill protocol. Newest first.</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Gap</th>
+<th>Unit added</th>
+<th>Source</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Math track</h2>
+<p>Sections not listed are SKIP. Assignments and problem numbers are in <code>math-map.html</code>.</p>
+<h3>Track A — least squares</h3>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Topic</th>
+<th>Status</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Vectors and linear combinations</td>
+<td>verified</td>
+<td>2026-11-20</td>
+<td>1, 19, 25 correct after prompting. Weakness: drops conditions from the question. Explain-back pending</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Lengths and dot products</td>
+<td>verified</td>
+<td>2026-11-21</td>
+<td>1, 2, 3, 8, 12 correct. Weak spots: producing a vector at a given angle took 3 attempts; counterexample was checked against the hypothesis but not the conclusion. Explain-back pending</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Matrices and <code>Ax = b</code></td>
+<td>verified</td>
+<td>2026-11-23</td>
+<td>1, 4, 6 done. Failure caught: assembled <code>S</code> with the given vectors as rows, i.e. computed <code>Sᵀx</code>, and asserted the result matched <code>b</code>. p4 combination <code>(1,−2,1)</code>, plane <code>b₁−2b₂+b₃=0</code>, <code>(1,0,0)</code> unreachable. p6: <code>c=3</code>, <code>c=−1</code>, independent for <code>c≠0</code> by components, <code>c=0</code> → <code>x=(−3,1,1)</code>. Explain-back pending</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Row and column pictures</td>
+<td>todo</td>
+<td>—</td>
+<td>Assigned 2026-11-24: read §2.1, problems 2, 5, 7. Acts as the prerequisite for the queue item "why does the column picture give the same <code>b</code>"</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Elimination and pivots</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Inverse matrices</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td><code>A = LU</code></td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Spaces of vectors</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Nullspace and free variables</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Complete solution</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Independence, basis, dimension</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Four subspaces</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Orthogonality of four subspaces</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Projections</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Least squares</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>Track B — likelihood</h3>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Topic</th>
+<th>Status</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.1</td>
+<td>Mean, variance, probability</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>Covariance and Bayes</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Calculus refresher (chain rule, partials, log)</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>Track C — eigen, SVD, PCA</h3>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Topic</th>
+<th>Status</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1</td>
+<td>Eigenvalues and eigenvectors</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Diagonalization</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>Symmetric matrices</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td>Positive definite matrices</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7.1</td>
+<td>SVD and image compression</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7.2</td>
+<td>Bases and matrices in the SVD</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7.3</td>
+<td>PCA by the SVD</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>Track D — text (review)</h3>
+<table>
+<thead>
+<tr>
+<th>§</th>
+<th>Topic</th>
+<th>Status</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.2</td>
+<td>Cosine similarity</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>Bayes for naive Bayes</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Independence in high dimensions</td>
+<td>todo</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Checkpoints</h2>
+<p>Answer without notes. The TA asks one per session, not all at once.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Question</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>Why is <code>AᵀA</code> invertible when <code>A</code> has independent columns?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Derive <code>AᵀAx = Aᵀb</code> from perpendicular residuals</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>What does <code>I − P</code> project onto?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Two identical columns: what breaks, and what should the code do?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>Why does Bernoulli likelihood maximization give log-loss?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>State Bayes' theorem and name naive Bayes' assumption</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>Differentiate the logistic log-loss. Write the gradient in matrix form.</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>Why are symmetric-matrix eigenvalues real and eigenvectors orthogonal?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Why is <code>AᵀA</code> positive definite, and what does it buy?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>What does the first singular vector of centered data point along?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Which objective does k-means minimize, and why does Lloyd never increase it?</td>
+<td>todo</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Concept spine</h2>
+<p>Fundamentals that must be explainable by the end, independent of any single model.
+Tick only after an explain-back.</p>
+<h3>Data and evaluation</h3>
+<ul>
+<li>[ ] Train/validation/test split, and why test is touched once</li>
+<li>[ ] Leakage: scalers, vocabularies, target encoding, time order</li>
+<li>[ ] Bias–variance decomposition, in your own words</li>
+<li>[ ] Cross-validation, and when it is worth the cost</li>
+<li>[ ] Regression metrics: MSE, RMSE, MAE, R² — and when each misleads</li>
+<li>[ ] Classification metrics: accuracy, precision, recall, F1, ROC-AUC, PR curve</li>
+<li>[ ] Clustering metrics: inertia, silhouette, adjusted Rand index</li>
+<li>[ ] Baseline-first discipline</li>
+</ul>
+<h3>Learning</h3>
+<ul>
+<li>[ ] Loss vs. metric: why they differ</li>
+<li>[ ] Maximum likelihood → loss function (at least for squared and log loss)</li>
+<li>[ ] Gradient, learning rate, convexity, convergence</li>
+<li>[ ] Batch vs. stochastic vs. mini-batch</li>
+<li>[ ] Feature scaling and conditioning</li>
+<li>[ ] Regularization: L1 vs. L2, and what each does to weights</li>
+<li>[ ] Overfitting, early stopping, model capacity</li>
+<li>[ ] Hyperparameter tuning without test-set peeking</li>
+<li>[ ] Reproducibility: seeds, determinism, version pinning</li>
+</ul>
+<h3>Models</h3>
+<ul>
+<li>[ ] Least squares as projection; normal equations; rank condition</li>
+<li>[ ] Logistic regression as a linear log-odds model; sigmoid; log-loss</li>
+<li>[ ] Decision trees: greedy split, impurity, pruning</li>
+<li>[ ] Bagging vs. boosting, and why each reduces a different error term</li>
+<li>[ ] k-means: Lloyd's algorithm, initialization, choosing k, assumptions</li>
+<li>[ ] Hierarchical clustering: linkage, dendrogram, when it beats k-means</li>
+<li>[ ] DBSCAN: density, core/border/noise, ε sensitivity</li>
+<li>[ ] Naive Bayes: conditional independence, smoothing, log-space</li>
+<li>[ ] TF-IDF: term weighting, document normalization, sparsity, cosine similarity</li>
+<li>[ ] SVD and PCA: variance maximization, centering, explained variance (optional)</li>
+</ul>
+<h2>Retrieval queue</h2>
+<p>Spaced review, not a schedule. Ask the next item whenever a session starts, regardless of
+dates. Wrong answers go back one interval (1 → 3 → 7 → 21 days). Retrieval never blocks
+forward progress; if an item is weak, drill it, then continue the phase.</p>
+<p><strong>Gate:</strong> an item is askable only when its <code>source</code> is <code>verified</code> or later. A row with
+<code>waiting</code> in the result column sits out until its source gets there. Rule and exceptions:
+<code>../AGENTS.md</code>, session loop step 1.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Source</th>
+<th>Last asked</th>
+<th>Suggested next</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is a linear combination? What does the set of all combinations of two vectors look like?</td>
+<td>§1.1</td>
+<td>2026-11-25</td>
+<td>2026-11-28</td>
+<td>pass after three sessions on it. A numeric drill worked where notation failed twice: plane for the non-parallel pair, line (the x-axis) for the parallel pair, and he found the <code>y = 0</code> obstruction unaided. Two defects: "transform" used for "scalar multiple", and the plane claim argued from its own label instead of from the count. Re-say assigned. LR-0003</td>
+</tr>
+<tr>
+<td><code>w</code> at 0°, 90°, 180° to <code>v</code>: what is it, and what test proves it?</td>
+<td>§1.2</td>
+<td>2026-11-24</td>
+<td>2026-12-01</td>
+<td>pass, vectors first try. First proof wrote <code>v·w = cos θ</code> (dropped <code>|v||w|</code>); corrected to the ratio and produced 1 / 0 / −1 in one line each. Side condition <code>v ≠ 0</code> still had to be supplied</td>
+</tr>
+<tr>
+<td>Row <code>i</code> of <code>A</code> dotted with <code>x</code>: which entry of <code>b</code> does it produce?</td>
+<td>§1.3</td>
+<td>2026-11-24</td>
+<td>2026-11-25</td>
+<td>pass. The narrow claim only: the entry. It took two asks, 2026-11-23 and 2026-11-24</td>
+</tr>
+<tr>
+<td>Why does the column picture produce the same <code>b</code>?</td>
+<td>§2.1</td>
+<td>—</td>
+<td>—</td>
+<td>waiting. Asked 2026-11-24 ahead of the reading; that was my error, not a failed retrieval. Activates after §2.1 is <code>verified</code></td>
+</tr>
+<tr>
+<td>Why estimate performance on data the model hasn't seen?</td>
+<td>ISL §2.2</td>
+<td>2026-11-24</td>
+<td>2026-11-27</td>
+<td>pass. Mechanism reached via a 2-point line (training MSE 0 for any pair of points, predictable without data). Correction absorbed: <code>f̂</code> from training, test observations only supply <code>(x0, y0)</code>. LR-0002</td>
+</tr>
+</tbody>
+</table>
+<h2>Session log</h2>
+<p>Newest first. One line each: date, type, focus, evidence, next action.</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Focus</th>
+<th>Evidence</th>
+<th>Next</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-11-26</td>
+<td>cleanup</td>
+<td>Root follows the teach structure</td>
+<td>Root holds <code>MISSION.md</code>, <code>RESOURCES.md</code>, <code>NOTES.md</code>, and the charter. The path, math map, progress board, and glossary are HTML references. The study contracts stay in <code>../study/</code>. The first lesson is <code>../lessons/0000-lab-harness.html</code>.</td>
+<td>Run the programming diagnostic, then compute the four split cases</td>
+</tr>
+<tr>
+<td>2026-11-26</td>
+<td>plan</td>
+<td>Rebuild the learning path</td>
+<td>Core scope fixed at 0, 1, 2, 5, 8, 11, 13. Each element now has a diagnostic, concept lesson, reference card, build, and explain-back. Programming is a tested prerequisite. A failed diagnostic or gate adds a prerequisite unit. The teach skill supplies the lesson and reference formats. <code>curriculum.html</code> is the index; <code>../study/</code> holds the contracts.</td>
+<td>Run the programming diagnostic, then compute the four split cases</td>
+</tr>
+<tr>
+<td>2026-11-25</td>
+<td>harness</td>
+<td>Build 0 split contract; §1.1 retrieval</td>
+<td>Ratio fixed at <code>60 / 20 / 20</code>. Leftover rule B (largest fractional part, tie train → validation → test) proposed and not yet signed. Empty set must error. §1.1 queue item closed after a numeric drill (LR-0003); two wording defects named. Test order changed: hand cases before the test (<code>../NOTES.md</code>). <code>models_random.rs</code> reviewed (dead file, seed-as-offset, table range) and no longer in the working tree</td>
+<td>Compute the four cases</td>
+</tr>
+<tr>
+<td>2026-11-25</td>
+<td>process</td>
+<td>Retrieval queue gate</td>
+<td>A check-in on 2026-11-24 tested the §2.1 column picture while §2.1 was <code>todo</code>. The queue gained a <code>source</code> column and a gate rule in <code>../AGENTS.md</code>; the broken item split into an askable §1.3 claim (pass) and a <code>waiting</code> §2.1 item</td>
+<td>Split return shape and size rule</td>
+</tr>
+<tr>
+<td>2026-11-24</td>
+<td>plan</td>
+<td>Path review against the mission and the teach skill</td>
+<td>The path now starts from the mission. Required core: builds 0, 1, 2, 5, 8, 11, 13. Upgrades keep their builds as optional depth, and their explain-backs stay required. Add a validation set, the L2 reading, checkpoint B3, and the dataset gate. Mark track C optional.</td>
+<td>Write the three-way split test</td>
+</tr>
+<tr>
+<td>2026-11-24</td>
+<td>reading</td>
+<td>ISL §2.2, <em>Assessing Model Accuracy</em></td>
+<td>Test-error item passed after a 2-point micro-example: training MSE is 0 for any pair of points and was predicted before computing. <code>f̂</code>-comes-from-train correction absorbed. Training set / test set / test MSE entered the glossary. LR-0002</td>
+<td>Write the split acceptance test</td>
+</tr>
+<tr>
+<td>2026-11-23</td>
+<td>harness</td>
+<td>Phase 0: <code>Mat</code> + layout check</td>
+<td><code>Mat</code> over the arena with <code>test_mat</code> pinning <code>set</code>/<code>get</code> and the row-major stride; the first draft's out-of-bounds <code>copy_nonoverlapping</code> was removed after review; a transposed stride fails the check</td>
+<td>Answer the ISL §2.2 question, then write the split acceptance test</td>
+</tr>
+<tr>
+<td>2026-11-23</td>
+<td>math</td>
+<td>§1.3 problems 1, 4, 6</td>
+<td>p1 stalled on row-vs-column assembly until a 2×2 micro-example; p4 and p6 correct after component-level probing, not before</td>
+<td>Phase 0 harness: choose array library, then split + scaler</td>
+</tr>
+<tr>
+<td>2026-11-20</td>
+<td>math</td>
+<td>§1.1 problems 1, 19, 25</td>
+<td>all correct after 3 rounds of prompts; recurring error: dropping one condition from the question</td>
+<td>§1.2 problems 1, 2, 3, 8, 12</td>
+</tr>
+<tr>
+<td>2026-11-17</td>
+<td>setup</td>
+<td>Mission, stack, baseline</td>
+<td>Stack: Rust; math from zero; coding strong</td>
+<td>§1.1 problems 1, 19, 25</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

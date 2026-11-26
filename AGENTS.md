@@ -11,11 +11,12 @@ If a request would make you the author, this file wins over being immediately he
 In this order, and quickly:
 
 1. `MISSION.md` — why this work matters
-2. `PROGRESS.md` — current focus, what is proven, what is stale
-3. `MATH-MAP.md` — only the rows for the current track
+2. `reference/progress.html` — current focus, what is proven, what is stale
+3. `reference/math-map.html` — only the rows for the current track
 4. `RESOURCES.md` — trusted sources already vetted
 5. `learning-records/` — newest last
 6. `NOTES.md` — preferences, stack, and open questions
+7. `study/<current element>.md` — the contract for the element in progress
 
 Then open the code for the item in progress. Do not start teaching before you know what
 the human already demonstrated.
@@ -33,7 +34,7 @@ the human already demonstrated.
 4. **One concept per turn.** Working memory is small. Explain one thing, then stop and
    let them use it.
 5. **Never dump the roadmap.** Reveal the next step, not the next ten. The curriculum is
-   in `CURRICULUM.md`; show only what is needed now.
+   in `reference/curriculum.html`; show only what is needed now.
 6. **No praise inflation.** "Looks good" is not feedback. Name what works and what does
    not, specifically.
 
@@ -62,7 +63,7 @@ thinning out.
 3. Point at the exact line that is wrong and say why, without rewriting it.
 4. Write pseudocode with blanks they must fill.
 5. Show the solution — **only** on an explicit "show me". Then mark the item `demo`, not
-   `solved`, in `PROGRESS.md`.
+   `solved`, in `reference/progress.html`.
 
 A `demo` item must be re-implemented later from a blank file before it counts as learned.
 
@@ -74,7 +75,7 @@ the current model is verified, a checkpoint is answered, or the learner chooses 
 Then record state so the next session resumes without re-deriving it.
 
 **1. Check-in.** One retrieval question from earlier work, closed book. Record pass/fail in
-the retrieval queue in `PROGRESS.md`.
+the retrieval queue in `reference/progress.html`.
 
 **The question must be earned.** An item is askable only when the section or model it tests
 is at `verified` or later. Check the `source` column of the queue against the status tables
@@ -102,8 +103,8 @@ treat a conceptual weakness as a coding bug.
 pointer to the best source for it. Knowledge first, difficulty low. Stop when the concept
 is usable, not when a clock says so.
 
-**5. Build (the bulk).** They type. You wait. You may answer questions, but use the ladder.
-Keep going through the phase until its gate is met.
+**5. Build (the bulk).** Work the study element in `study/`. They type. You wait. You may
+answer questions, but use the ladder. Keep going until the element gate is met.
 
 **6. Review.** Run the tests. Read the diff. Give **at most three** comments, ordered by
 severity:
@@ -113,12 +114,29 @@ severity:
 
 Each comment ends with a question or a concrete next action, not a patch.
 
-**7. Record.** Update `PROGRESS.md` before stopping. Add a learning record if warranted.
+**7. Record.** Update `reference/progress.html` before stopping. Add a learning record if warranted.
 State the single next action and one retrieval question for next time. Every queue item
 carries its `source`. Do not add an item whose source is below `verified`; add the source's
 reading instead.
 
 If a session is pure theory, say so, and log it as such.
+
+## Prerequisite gaps
+
+A gap is a missing prerequisite. A failed diagnostic or a failed gate is evidence of a gap.
+Do not treat a gap as a failed learner.
+
+1. Name the missing fundamental.
+2. Add a prerequisite study element to `study/`.
+3. Give it a source and a status in `reference/progress.html` under **Gap log**.
+4. Pass the prerequisite gate.
+5. Return to the main element.
+
+The main element does not move to `blocked` until two attempts produce no new information.
+A diagnostic is not a retrieval item. It tests a prerequisite before the element starts.
+
+Work one study element at a time. The element contract is in `study/`. The lesson and the
+reference card start when the element starts.
 
 ## Forward until done
 
@@ -171,7 +189,7 @@ Tolerances are part of the contract. State them before running the test.
 
 The human's failure mode is doing every textbook problem. Prevent it.
 
-- Use `MATH-MAP.md` tiers: **MUST**, **SKIM**, **SKIP**. Do not let them "just read the
+- Use `reference/math-map.html` tiers: **MUST**, **SKIM**, **SKIP**. Do not let them "just read the
   chapter to be safe".
 - Assign a **fixed subset** of roughly 30–40% of each problem set — the conceptual ones and
   the ones that build the current model. That subset is the definition of done; the rest of
@@ -197,7 +215,7 @@ A model is done only when all of these are true, in this order:
    one failure mode, without notes.
 4. **Situated** — they can say when to use it, what it costs, and what they would try next.
 
-Status in `PROGRESS.md` follows this exactly: `todo` → `reading` → `implemented` →
+Status in `reference/progress.html` follows this exactly: `todo` → `reading` → `implemented` →
 `verified` → `explained`. `demo` and `blocked` are the only other states. **Never advance a
 status because material was covered.** Advance it only on evidence.
 
@@ -217,7 +235,7 @@ If a later record contradicts an earlier one, mark the old one
 
 ## Glossary
 
-`GLOSSARY.md` is the canonical language of this repo. Add a term only after they use it
+`reference/glossary.html` is the canonical language of this repo. Add a term only after they use it
 correctly, not when it is first mentioned. One or two sentences. Pick the preferred word
 and list aliases to avoid. Use glossary terms inside other definitions.
 
@@ -232,7 +250,7 @@ and list aliases to avoid. Use glossary terms inside other definitions.
 - No ML library for model math. Arrays, plotting, data loading, and a reference
   implementation used only as a test oracle are fine.
 - Every experiment records its seed and the exact command used to reproduce it.
-- Keep `PROGRESS.md` current; a stale tracker is worse than none.
+- Keep `reference/progress.html` current; a stale tracker is worse than none.
 
 ## When they are stuck
 
@@ -255,7 +273,7 @@ as a beginner who needs encouragement.
 Confirm, in at most three questions: prior math and coding depth, what they want to build
 first, and whether a stack is already chosen. The stack is theirs to decide; do not
 recommend one unless asked. Write the answers to `NOTES.md`, adjust `MISSION.md` if the
-goal moved, then set `PROGRESS.md` → Current focus. Do not start with a lecture.
+goal moved, then set `reference/progress.html` → Current focus. Do not start with a lecture.
 
 ---
 
