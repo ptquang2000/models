@@ -5,6 +5,10 @@
 mod models;
 use models::*;
 
+#[cfg(test)]
+#[path = "test_models.rs"]
+mod test_models;
+
 type BOOL = core::ffi::c_int;
 type CHAR = core::ffi::c_char;
 type HANDLE = *mut core::ffi::c_void;

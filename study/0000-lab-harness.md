@@ -89,4 +89,4 @@ Write this before the code. Compute the cases by hand first.
 
 | Date | Gap | Unit added | Status |
 | --- | --- | --- | --- |
-| — | — | — | — |
+| 2026-11-27 | Extent confused with index (`m.len()` answered as `i`) | `0000a-shape-vs-index.md` | `verified` 2026-11-27 |

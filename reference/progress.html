@@ -62,10 +62,11 @@ elapsed is not a progress metric.</p>
 <li>Model: Phase 0 lab harness (Rust, hand-rolled <code>Mat</code>)</li>
 <li>Reading: ISL §2.2, <em>Assessing Model Accuracy</em> (stop at the Python lab)</li>
 <li>Prerequisite: programming diagnostic (see <code>../study/0000-lab-harness.md</code>)</li>
-<li>Next action: run the programming diagnostic, then compute the four split cases by hand
-  (<code>n = 10, 11, 8, 3</code> at <code>60 / 20 / 20</code>), then write the acceptance test from them, then the
-  sizes code</li>
-<li>Last session: 2026-11-26 (path rebuild; teach structure; study elements, programming gate, gap-fill rule; glossary reference)</li>
+<li>Next action: sign the split size rule (A, B, or a third), then compute the four cases by hand
+  (<code>n = 10, 11, 8, 3</code> at <code>60 / 20 / 20</code>), then write the acceptance test from them, then
+  the sizes code</li>
+<li>Last session: 2026-11-27 (element 0 diagnostic passed; file read + 4 fixtures; gap unit 0000a
+  closed; LR-0004)</li>
 </ul>
 <h2>Prerequisite: programming</h2>
 <p>Programming is a prerequisite. The path tests it once, before element 0. A failure adds a
@@ -81,8 +82,8 @@ repair unit from <em>The Rust Programming Language</em>, chapters 3–4, 8, and 
 <tbody>
 <tr>
 <td>Rust function, slice, test, file input, shape statement</td>
-<td>todo</td>
-<td>—</td>
+<td>verified</td>
+<td>2026-11-27. `mean` with 4 cases, a file read with 4 hand-computed fixtures, 3 tests green. Shape statement: `m.len()` = row count, `m[0].len()` = column count, `m[2][1]` = row 2 column 1. Gap unit <a href="../study/0000a-shape-vs-index.md">0000a</a> passed. LR-0004</td>
 </tr>
 </tbody>
 </table>
@@ -258,6 +259,13 @@ optional depth. Their explain-backs are still required.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2026-11-27</td>
+<td>Extent confused with index. `m.len()` answered as `i`; `m[0].len()` as `j`</td>
+<td><a href="../study/0000a-shape-vs-index.md">0000a — shape vs index</a></td>
+<td>TRPL ch. 8.1</td>
+<td>verified 2026-11-27, LR-0004</td>
+</tr>
 <tr>
 <td>—</td>
 <td>—</td>
@@ -675,9 +683,9 @@ forward progress; if an item is weak, drill it, then continue the phase.</p>
 <tr>
 <td>Row <code>i</code> of <code>A</code> dotted with <code>x</code>: which entry of <code>b</code> does it produce?</td>
 <td>§1.3</td>
-<td>2026-11-24</td>
-<td>2026-11-25</td>
-<td>pass. The narrow claim only: the entry. It took two asks, 2026-11-23 and 2026-11-24</td>
+<td>2026-11-26</td>
+<td>2026-11-29</td>
+<td>pass, first try, on a 3×2 numeric case (<code>3·1 + 4·(−1) = −1</code>, entry 2). The narrow claim only: the entry. Took two asks on 2026-11-23 and 2026-11-24, one now</td>
 </tr>
 <tr>
 <td>Why does the column picture produce the same <code>b</code>?</td>
@@ -708,6 +716,13 @@ forward progress; if an item is weak, drill it, then continue the phase.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2026-11-27</td>
+<td>harness</td>
+<td>Element 0 diagnostic: file read, shape gate</td>
+<td>Diagnostic passed 4 of 4. `mean` returns `Option` and covers 4 cases. A platform-stub file read parses 4 fixtures whose sums were computed by hand: 30, −10, 7, 18. The parser now handles sign, fraction, a final run with no separator, and rejects a file with no numbers. 3 tests green. The shape statement failed twice (`m.len()` answered as `i`, then as `i * j`), so gap unit `0000a` was added and closed the same day: extent is a count, index is a position. LR-0004</td>
+<td>Sign the split size rule, then compute the four cases</td>
+</tr>
 <tr>
 <td>2026-11-26</td>
 <td>cleanup</td>

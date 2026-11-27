@@ -37,7 +37,7 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log �
 | 2026-11-23 | Input checks use `debug_assert!` | Learner's decision; active at `-C opt-level=0`, compiled out above it |
 | 2026-11-23 | Each build has a pinned, section-level primary reading; a build does not start until that reading is done and its terms are defined | Learner asked to study each concept before coding it; the reading track lives in `reference/curriculum.html` |
 | 2026-11-23 | Platform/model split: OS-level failure handling (mmap, file I/O) is platform code; model code assumes valid memory | Learner's call — mirrors Handmade Hero's platform/game separation |
-| 2026-11-23 | Checks run manually (`./build/linux_models_test`), not from `build.sh` | Learner's call — build and check stay separate |
+| 2026-11-23 | Checks run manually (`sh build.sh`, then `./build/test_linux_models.rs`), not from `build.sh` | Learner's call — build and check stay separate. The target name was `./build/linux_models_test` before 2026-11-27 |
 | 2026-11-24 | Required core is builds 0, 1, 2, 5, 8, 11, 13; builds 3, 4, 6, 7, 9, 10, 12 are optional depth | The mission asks for four starter models and an explanation of the upgrades. The full 13-build path exceeded that goal. The upgrade explain-backs stay required. |
 | 2026-11-25 | Retrieval items carry a `source` and are askable only when that source is `verified` or later | A check-in on 2026-11-24 tested the §2.1 column-picture idea while §2.1 was still `todo`. The learner had not studied it, so the failure was mine. The queue now gates every item on its source. |
 | 2026-11-25 | Build 0 order: hand cases first, then the acceptance test | The learner reported that test-first blocked his understanding of the split. The test now comes from cases he computes by hand, and never from the output of his code. |
@@ -45,6 +45,8 @@ Scratchpad for preferences, decisions, and open questions. Not a progress log �
 | 2026-11-26 | Programming is a tested prerequisite, not a taught module | The learner is a strong coder. The path tests the contract once and adds a repair unit only on failure. |
 | 2026-11-26 | Markdown study elements now; HTML lessons per element | The plan must be stable before the teaching. Lessons start when an element starts, so they stay in the zone of proximal development. |
 | 2026-11-26 | A failed diagnostic or gate adds a prerequisite study element | The path must fill a knowledge gap. The main element waits. The learner does not grind. |
+| 2026-11-27 | Model tests compile through the platform build (`linux_models.rs --test`), not through `models.rs` | Learner's call. Consequence: a platform that is not wired with `#[cfg(test)] mod test_models;` has no model tests. All three platforms were wired the same day |
+| 2026-11-27 | Test input paths are relative, and the test binary runs from the repo root | Learner's call. Consequence: the same binary fails from `build/`; the failure message must name the path |
 
 ## Baseline
 
